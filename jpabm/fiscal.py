@@ -20,7 +20,7 @@ KAPPA, SPEED, X25 = 0.87, 0.23, 14.4
 REPL0, FLOOR = 0.612, 0.50
 I0 = 4                                                 # index of 2024 when the run starts in 2020
 
-KEYS = ["gdp", "real", "tax", "taxc", "ben", "benpct", "repl", "pb", "debt", "debtgdp", "intr", "inttax", "rav", "gn", "infl", "yld", "soc"]
+KEYS = ["wage", "price", "gdp", "real", "tax", "taxc", "ben", "benpct", "repl", "pb", "debt", "debtgdp", "intr", "inttax", "rav", "gn", "infl", "yld", "soc"]
 
 
 def _ramp(y, start, ramp):
@@ -63,7 +63,7 @@ def fiscal(out: dict, p) -> dict:
         tc = TAXC0 * ((10 + r * (p.tax_consumption - 10)) / 10) * N / N0
         to = KO * N * (1 + r * p.tax_other_pct / 100); tax = tc + to
         rows.append(dict(i=i, y=y, N=N, P=P, B=B, tax=tax, yl=yl))
-        f["gdp"][i] = N; f["real"][i] = 100 * Y / N0; f["tax"][i] = tax; f["taxc"][i] = tc; f["ben"][i] = B
+        f["wage"][i] = 100 * A; f["price"][i] = 100 * P; f["gdp"][i] = N; f["real"][i] = 100 * Y / N0; f["tax"][i] = tax; f["taxc"][i] = tc; f["ben"][i] = B
         f["benpct"][i] = 100 * B / N; f["repl"][i] = 100 * Rr; f["infl"][i] = 100 * pi; f["yld"][i] = yl
         if i == 6: B26 = B
         if i == 5: P5 = P

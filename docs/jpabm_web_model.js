@@ -140,7 +140,7 @@ const JPABM = (function () {
   };
   function fiscal(out, p) {
     const T = out.pop.length, i0 = 4, Z = () => new Float64Array(T);
-    const f = { gdp: Z(), real: Z(), tax: Z(), taxc: Z(), ben: Z(), benpct: Z(), repl: Z(), pb: Z(), debt: Z(), debtgdp: Z(), intr: Z(), inttax: Z(), rav: Z(), gn: Z(), infl: Z(), yld: Z(), soc: Z() };
+    const f = { wage: Z(), price: Z(), gdp: Z(), real: Z(), tax: Z(), taxc: Z(), ben: Z(), benpct: Z(), repl: Z(), pb: Z(), debt: Z(), debtgdp: Z(), intr: Z(), inttax: Z(), rav: Z(), gn: Z(), infl: Z(), yld: Z(), soc: Z() };
     const ramp = y => y < p.policyStart ? 0 : Math.min(1, Math.max(0, (y - p.policyStart + 1) / Math.max(1, p.policyRamp)));
     let P = 1, A = 1, Y = FIS.N0, b = 0, Rprev = FIS.REPL0, D = FIS.D24, rav = FIS.R24, medK = 0, W0 = 1, popA = 0, pop014A = 0, pop65A = 0, B26 = 0, P5 = 1;
     const cohort = i => FIS.CB[0] * out.b0[i] + FIS.CB[1] * out.b1[i] + FIS.CB[2] * out.b2[i] + FIS.CB[3] * out.b3[i] + FIS.CB[4] * out.b4[i];
@@ -165,7 +165,7 @@ const JPABM = (function () {
       const B = pen + med + wel;
       const tc = FIS.TAXC0 * ((10 + r * (p.taxC - 10)) / 10) * N / FIS.N0, to = FIS.KO * N * (1 + r * p.taxOth / 100), tax = tc + to;
       rows.push({ i, y, N, P, W, B, tc, to, tax, yl, pi, Rr, pop });
-      f.gdp[i] = N; f.real[i] = 100 * Y / FIS.N0; f.tax[i] = tax; f.taxc[i] = tc; f.ben[i] = B; f.benpct[i] = 100 * B / N; f.repl[i] = 100 * Rr; f.infl[i] = 100 * pi; f.yld[i] = yl;
+      f.wage[i] = 100 * A; f.price[i] = 100 * P; f.gdp[i] = N; f.real[i] = 100 * Y / FIS.N0; f.tax[i] = tax; f.taxc[i] = tc; f.ben[i] = B; f.benpct[i] = 100 * B / N; f.repl[i] = 100 * Rr; f.infl[i] = 100 * pi; f.yld[i] = yl;
       if (i === 6) B26 = B;
       if (i === 5) P5 = P;
     }
@@ -185,7 +185,7 @@ const JPABM = (function () {
     out.f = f; out.repl = f.repl;
     for (const k of Object.keys(f)) out['f_' + k] = f[k];
   }
-  const KEYS = ['pop', 's014', 's1564', 's65', 'dep', 'repl', 'labor', 'tokyo', 'tfr', 'f_gdp', 'f_real', 'f_tax', 'f_taxc', 'f_ben', 'f_benpct', 'f_pb', 'f_debt', 'f_debtgdp', 'f_intr', 'f_inttax', 'f_rav', 'f_gn', 'f_infl', 'f_yld', 'f_soc'];
+  const KEYS = ['pop', 's014', 's1564', 's65', 'dep', 'repl', 'labor', 'tokyo', 'tfr', 'f_gdp', 'f_real', 'f_tax', 'f_taxc', 'f_ben', 'f_benpct', 'f_pb', 'f_debt', 'f_debtgdp', 'f_intr', 'f_inttax', 'f_rav', 'f_gn', 'f_infl', 'f_yld', 'f_soc', 'f_wage', 'f_price'];
   function stats(runs) {
     const T = runs[0].pop.length, res = {};
     for (const key of KEYS) { const mean = new Float64Array(T), lo = new Float64Array(T), hi = new Float64Array(T);

@@ -11,10 +11,15 @@ Social Security Research). It is meant for *comparing policy scenarios on equal 
 ## Install and run
 
 ```bash
-pip install -e .            # numpy only
+pip install git+https://github.com/YOUR_GITHUB_USER/jpabm.git      # numpy only
+# or, from a clone:
+pip install -e ".[dev]"
 python -m jpabm.validate    # prints the comparison table below
-pytest                      # 6 tests, ~3 s
+pytest                      # 9 tests, ~6 s
 ```
+
+Reproduce everything in a browser, with no installation: open `docs/Colab_reproduce.ipynb` in Google Colab
+(File > Open notebook > GitHub). It installs the package from this repository and re-runs the validation table and the scenarios.
 
 ```python
 from jpabm import Params, run_many, band
@@ -109,6 +114,8 @@ model's baseline means and `test_python_matches_javascript_reference` fails if t
 
 ## Extending
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for step-by-step notes on adding prefectures or an education layer.
+
 `jpabm/data.py` holds every reference number with its source. Natural next steps: prefecture-level regions with real
 migration flows (Statistics Bureau), an education layer, households and divorce, a funded pension reserve and subsidy,
 and checks against the IPSS fertility/mortality variants (high/low).
@@ -122,4 +129,6 @@ and checks against the IPSS fertility/mortality variants (high/low).
 - NRI note on 2024 pension actuarial valuation: https://www.nri.com/jp/knowledge/blog/lst/2024/fis/kiuchi/0703_2
 - 2020 population pyramid (secondary): https://en.wikipedia.org/wiki/Demographics_of_Japan
 
-MIT licence.
+## Citation
+
+See `CITATION.cff`. MIT licence.

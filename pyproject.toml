@@ -9,6 +9,8 @@ description = "Agent-based model of Japan's demographics and pension pressure, c
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
+authors = [{ name = "YOUR NAME HERE" }]
+keywords = ["agent-based model", "demography", "Japan", "pension", "public finance"]
 dependencies = ["numpy>=1.23"]
 
 [project.optional-dependencies]
@@ -17,3 +19,7 @@ dev = ["pytest"]
 
 [tool.setuptools]
 packages = ["jpabm"]
+
+[project.urls]
+Homepage = "https://github.com/YOUR_GITHUB_USER/jpabm"
+Issues = "https://github.com/YOUR_GITHUB_USER/jpabm/issues"

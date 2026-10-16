@@ -6,120 +6,132 @@
 <style>
 :root {
   color-scheme: light;
-  --paper: #FFFFFF; --ink: #0B1F3A; --muted: #4B5C74; --rule: #D8DFEA; --teal: #1B3C7B; --base: #8A9AB2;
-  --teal-soft: rgba(27,60,123,.14);
+  --paper: #FFFFFF; --ink: #0B1F3A; --muted: #4B5C74; --rule: #D8DFEA; --navy: #1B3C7B; --base: #8A9AB2; --soft: #F3F6FB;
+  --navy-soft: rgba(27,60,123,.14);
   --ja: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
   --en: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
 }
-
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--ja); font-size: 16px; line-height: 1.85;
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--ja); font-size: 16px; line-height: 1.8;
   padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px)); }
-html[lang="en"] body { font-family: var(--en); line-height: 1.65; }
-.page { max-width: 1120px; margin-inline: auto; padding-block: 18px 72px; }
+html[lang="en"] body { font-family: var(--en); line-height: 1.6; }
+.page { max-width: 1180px; margin-inline: auto; padding-block: 18px 72px; }
 h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
-.nb { white-space: nowrap; }
-button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
 
 .top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
 .brand { font-weight: 700; font-size: 17px; }
 .lang { display: flex; gap: 16px; }
-.pick { background: none; border: 0; padding: 0; cursor: pointer; color: var(--teal); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
-.pick[aria-pressed="true"] { color: var(--ink); font-weight: 700; text-decoration-thickness: 2px; text-decoration-color: var(--teal); }
+.pick { background: none; border: 0; padding: 0; cursor: pointer; color: var(--navy); text-align: left; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.pick[aria-pressed="true"] { color: var(--ink); font-weight: 700; text-decoration-thickness: 2px; }
 
-h1 { margin-top: 56px; font-size: clamp(28px, 4.8vw, 48px); line-height: 1.25; font-weight: 700; max-width: 20em; text-wrap: balance; }
-html[lang="en"] h1 { letter-spacing: -.015em; max-width: 18em; }
-.intro { margin-top: 20px; max-width: 40em; font-size: 17px; text-wrap: pretty; }
-.intro + .intro { margin-top: 10px; }
+h1 { margin-top: 40px; font-size: clamp(26px, 4.4vw, 42px); line-height: 1.3; font-weight: 700; text-wrap: balance; }
+.lede { margin-top: 10px; max-width: 40em; color: var(--muted); text-wrap: pretty; }
 
-.stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 56px; margin-top: 44px; align-items: start; }
-@media (max-width: 980px) { .stage { grid-template-columns: minmax(0, 1fr); gap: 40px; } }
+.app { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 56px; margin-top: 36px; align-items: start; }
+@media (max-width: 980px) { .app { grid-template-columns: minmax(0, 1fr); gap: 40px; } }
 
-.yearrow { display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
-.bigyear { font-size: clamp(60px, 11vw, 104px); font-weight: 700; line-height: .95; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
-.ysub { color: var(--muted); padding-bottom: 6px; }
-svg { display: block; width: 100%; height: auto; }
-#pyr { margin-top: 12px; min-height: 380px; }
-.scrub { display: flex; align-items: center; gap: 16px; margin-top: 6px; }
-.play { min-width: 4.5em; padding: 4px 14px; border: 1px solid var(--ink); border-radius: 3px; background: none; cursor: pointer; }
-.play:hover { background: var(--ink); color: var(--paper); }
-input[type=range] { width: 100%; accent-color: var(--teal); margin: 8px 0; }
-.note { color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 44em; text-wrap: pretty; }
-.scrub + .note { margin-top: 6px; }
-
-.diff { margin-top: 28px; display: grid; gap: 2px; max-width: 600px; }
-.diff > div { display: grid; grid-template-columns: minmax(0, 1fr) 8.5em 8.5em; gap: 0 12px; align-items: baseline; }
-.diff dt { color: var(--ink); }
-.diff dd { font-variant-numeric: tabular-nums; text-align: right; }
-.diff .d { color: var(--muted); }
-.diff .dh { font-size: 13px; color: var(--muted); font-weight: 700; } .diff .dh span { text-align: right; }
-.diff .gap { height: 8px; display: block; }
-@media (max-width: 520px) { .diff > div { grid-template-columns: minmax(0, 1fr) 6.8em 6.8em; gap: 0 8px; font-size: 14.5px; } }
-
-.controls h2 { font-size: 22px; line-height: 1.4; }
-.picks { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 15px; line-height: 1.7; }
-.grp { margin-top: 30px; font-size: 15px; font-weight: 700; padding-bottom: 4px; border-bottom: 1px solid var(--rule); }
-.ctl { margin-top: 18px; }
+/* controls */
+.controls h2 { font-size: 20px; line-height: 1.4; }
+.qs { margin-top: 10px; display: grid; gap: 2px; font-size: 15px; line-height: 1.65; }
+.grp { margin-top: 28px; font-size: 15px; font-weight: 700; padding-bottom: 4px; border-bottom: 1px solid var(--rule); }
+.ctl { margin-top: 16px; }
 .ctl label { display: flex; justify-content: space-between; gap: 12px; font-weight: 700; line-height: 1.5; }
-.ctl output { font-weight: 400; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--teal); }
+.ctl output { font-weight: 400; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--navy); }
 .hint { display: block; color: var(--muted); font-size: 13px; line-height: 1.6; }
-details { margin-top: 30px; }
-summary { cursor: pointer; color: var(--teal); text-decoration: underline; text-underline-offset: 4px; }
-details .ctl:first-of-type { margin-top: 14px; }
-#status { margin-top: 24px; color: var(--muted); font-size: 13px; }
+input[type=range] { width: 100%; accent-color: var(--navy); margin: 8px 0 4px; }
+details > summary { cursor: pointer; color: var(--navy); text-decoration: underline; text-underline-offset: 4px; }
+.controls details { margin-top: 28px; }
+.controls details .ctl:first-of-type { margin-top: 14px; }
+#status { margin-top: 22px; color: var(--muted); font-size: 13px; }
 
-section.s { margin-top: 80px; }
-section.s h2 { font-size: 26px; line-height: 1.4; max-width: 24em; text-wrap: balance; }
-section.s > p { margin-top: 10px; max-width: 42em; text-wrap: pretty; }
-section.s > p.note { margin-top: 10px; }
-.grid { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 40px; }
-.grid + h3.gh { margin-top: 56px; }
-h3.gh { font-size: 20px; line-height: 1.5; margin-top: 44px; }
-h3.gh + p { margin-top: 4px; max-width: 42em; color: var(--muted); font-size: 14px; }
-@media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
-figure h3 { font-size: 18px; line-height: 1.5; }
+/* output */
+.timebar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+.timebar .lab { font-weight: 700; }
+.timebar .yv { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 2.6em; }
+.timebar input[type=range] { flex: 1 1 200px; width: auto; margin: 0; }
+.play { min-width: 4.5em; padding: 3px 14px; border: 1px solid var(--ink); border-radius: 3px; background: none; cursor: pointer; }
+.play:hover { background: var(--ink); color: var(--paper); }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 0 28px; margin-top: 18px; border-bottom: 1px solid var(--rule); }
+.tab { background: none; border: 0; border-bottom: 3px solid transparent; padding: 8px 0 7px; cursor: pointer; color: var(--muted); margin-bottom: -1px; }
+.tab[aria-selected="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--navy); }
+.panel { margin-top: 44px; scroll-margin-top: 12px; }
+.panel:first-of-type { margin-top: 26px; }
+.ph { font-size: 24px; line-height: 1.4; margin-bottom: 8px; }
+.ph.sm { font-size: 19px; }
+.panel.sub { margin-top: 72px; padding-top: 26px; border-top: 1px solid var(--rule); }
+.jump { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 14px; font-size: 15px; }
+.jump a { color: var(--navy); text-underline-offset: 4px; }
+.panel[hidden] { display: none; }
+.lead { max-width: 40em; color: var(--muted); text-wrap: pretty; }
+
+.rows { margin-top: 18px; display: grid; gap: 14px 0; max-width: 700px; }
+.rows .r { display: grid; grid-template-columns: minmax(0, 1fr) 8.5em 8.5em; gap: 0 12px; align-items: baseline; }
+.rows .rh { font-size: 13px; color: var(--muted); font-weight: 700; }
+.rows .rh span:not(:first-child) { text-align: right; }
+.rows dt { font-weight: 700; }
+.rows dt small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.rows dd { text-align: right; font-variant-numeric: tabular-nums; font-size: 17px; }
+.rows dd.d { color: var(--muted); }
+.rows .tot { border-top: 2px solid var(--ink); padding-top: 12px; }
+.rows .tot dd { font-weight: 700; }
+@media (max-width: 560px) { .rows .r { grid-template-columns: minmax(0, 1fr) 6.2em 6.2em; gap: 0 8px; } .rows dd { font-size: 15px; } }
+
+.cmpmet { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 16px; }
+.cmprows { margin-top: 18px; max-width: 760px; display: grid; gap: 10px 0; }
+.cmprow { display: grid; grid-template-columns: 15em minmax(0, 1fr) 6.5em; gap: 0 14px; align-items: center; }
+.cmprow .nm { line-height: 1.5; }
+.cmprow .nm small { display: block; color: var(--muted); font-size: 12.5px; }
+.cmprow .tr { position: relative; height: 18px; border-left: 1px solid var(--ink); background: linear-gradient(var(--soft), var(--soft)) left center / 100% 100% no-repeat; }
+.cmprow .tr i { position: absolute; top: 2px; height: 14px; background: var(--navy); opacity: .85; }
+.cmprow .vl { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+.cmpst { margin-top: 12px; color: var(--muted); font-size: 13px; min-height: 1.6em; }
+@media (max-width: 640px) { .cmprow { grid-template-columns: minmax(0, 1fr) 6em; } .cmprow .tr { grid-column: 1 / -1; grid-row: 2; } }
+.hhsel { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 16px; }
+.hhin { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: end; }
+.hhin label { display: grid; gap: 2px; font-size: 13px; color: var(--muted); }
+.hhin input[type=number] { width: 7.5em; padding: 4px 2px; border: 0; border-bottom: 1px solid var(--ink); background: var(--soft); font-size: 17px; font-variant-numeric: tabular-nums; border-radius: 0; }
+.hhin .chk { display: flex; align-items: center; gap: 8px; color: var(--ink); font-size: 15px; padding-bottom: 5px; }
+.note { margin-top: 14px; color: var(--muted); font-size: 13.5px; line-height: 1.7; max-width: 44em; text-wrap: pretty; }
+
+.charts { margin-top: 36px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 36px; }
+.charts.one { grid-template-columns: minmax(0, 1fr); max-width: 640px; }
+@media (max-width: 1100px) { .charts { grid-template-columns: minmax(0, 1fr); } }
+figure h3 { font-size: 17px; line-height: 1.5; }
 figure .cap { color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-top: 2px; max-width: 34em; }
 .ro { margin-top: 8px; min-height: 1.7em; font-size: 14px; font-variant-numeric: tabular-nums; }
+svg { display: block; width: 100%; height: auto; }
+#pyr { margin-top: 8px; min-height: 380px; }
+.pyrwrap { max-width: 680px; }
 
-.gridline { stroke: var(--rule); stroke-width: 1; } .axis { stroke: var(--muted); stroke-width: 1; }
+.gridline { stroke: var(--rule); stroke-width: 1; }
 .tick { fill: var(--muted); font-size: 11px; } .agelab { fill: var(--muted); font-size: 11px; }
 .head { fill: var(--ink); font-size: 13px; font-weight: 700; }
 .ln { fill: none; stroke-linejoin: round; stroke-linecap: round; }
-.ln-you { stroke: var(--teal); stroke-width: 2.6; } .ln-base { stroke: var(--base); stroke-width: 1.7; }
+.ln-you { stroke: var(--navy); stroke-width: 2.6; } .ln-base { stroke: var(--base); stroke-width: 1.7; }
 .ln-ipss { stroke: var(--ink); stroke-width: 1.3; stroke-dasharray: 5 4; }
 .dot-ipss { fill: var(--paper); stroke: var(--ink); stroke-width: 1.4; }
-.band { fill: var(--teal-soft); } .sel { stroke: var(--ink); stroke-width: 1; opacity: .35; } .guide { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; }
-.lab-you { fill: var(--teal); font-size: 12px; font-weight: 700; } .lab-base { fill: var(--muted); font-size: 12px; } .lab-ipss { fill: var(--ink); font-size: 12px; }
+.band { fill: var(--navy-soft); } .sel { stroke: var(--ink); stroke-width: 1; opacity: .35; } .guide { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; }
+.lab-you { fill: var(--navy); font-size: 12px; font-weight: 700; } .lab-base { fill: var(--muted); font-size: 12px; } .lab-ipss { fill: var(--ink); font-size: 12px; }
 .mk { stroke: var(--ink); stroke-width: 1.6; fill: none; } .mk-dot { fill: var(--ink); } .mk-txt { fill: var(--ink); font-size: 11px; }
 .zero { stroke: var(--ink); stroke-width: 1; opacity: .5; }
-.bar { fill: var(--teal); opacity: .82; } .bar-base { fill: none; stroke: var(--ink); stroke-width: 1.2; }
+.bar { fill: var(--navy); opacity: .82; } .bar-base { fill: none; stroke: var(--ink); stroke-width: 1.2; }
 .chart { cursor: crosshair; }
 
-.tablewrap { margin-top: 24px; overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.5; }
-#cmp { min-width: 820px; } #check { min-width: 520px; } #anchors { min-width: 560px; }
-th, td { padding: 10px 14px 10px 0; text-align: right; vertical-align: top; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
-th { font-size: 13px; color: var(--muted); font-weight: 700; }
-th:first-child, td:first-child { text-align: left; min-width: 12em; padding-right: 20px; }
-#anchors td:nth-child(2), #anchors th:nth-child(2) { text-align: left; }
-td.best { font-weight: 700; }
-tr.sep td { border-top: 2px solid var(--ink); }
-.prose { margin-top: 20px; max-width: 42em; text-wrap: pretty; }
-.prose + .prose { margin-top: 12px; }
-dl.gl { margin-top: 24px; display: grid; gap: 18px 0; max-width: 44em; }
-dl.gl dt { font-weight: 700; }
-dl.gl dd { color: var(--ink); }
-ul.limits { margin-top: 18px; padding-left: 1.2em; max-width: 44em; display: grid; gap: 10px; }
-.src a { color: var(--teal); text-underline-offset: 3px; }
-.src { max-width: 46em; }
-footer { margin-top: 80px; color: var(--muted); font-size: 13px; max-width: 46em; }
+.about { margin-top: 72px; border-top: 1px solid var(--rule); padding-top: 20px; max-width: 46em; }
+.about ul { margin-top: 14px; padding-left: 1.2em; display: grid; gap: 8px; font-size: 15px; }
+.about h3 { margin-top: 22px; font-size: 16px; }
+.about .src a { color: var(--navy); text-underline-offset: 3px; }
+.about .src { margin-top: 8px; font-size: 14px; }
+footer { margin-top: 32px; color: var(--muted); font-size: 13px; max-width: 46em; }
 </style>
 
 <div class="page">
   <header class="top">
-    <span class="brand" data-i18n="brand"></span>
+    <span class="brand">Mini Japan</span>
     <div class="lang" role="group" aria-label="Language">
       <button class="pick" data-lang="ja" aria-pressed="true">日本語</button>
       <button class="pick" data-lang="en" aria-pressed="false">English</button>
@@ -127,54 +139,34 @@ footer { margin-top: 80px; color: var(--muted); font-size: 13px; max-width: 46em
   </header>
 
   <h1 data-i18n="h1"></h1>
-  <p class="intro" data-i18n="intro1"></p>
-  <p class="intro" data-i18n="intro2"></p>
+  <p class="lede" data-i18n="lede"></p>
 
-  <div class="stage">
-    <div>
-      <div class="yearrow"><div class="bigyear" id="bigyear">2070</div><div class="ysub" id="ysub"></div></div>
-      <svg id="pyr" role="img"></svg>
-      <div class="scrub">
-        <button class="play" id="play" type="button"></button>
-        <input id="year" type="range" min="2020" max="2070" step="1" value="2070">
-      </div>
-      <p class="note" data-i18n="pyrKey"></p>
-      <dl class="diff" id="diff"></dl>
-    </div>
-
+  <div class="app">
     <form class="controls" onsubmit="return false">
-      <h2 data-i18n="cond"></h2>
-      <div class="picks" id="presets" role="group">
+      <h2 data-i18n="try"></h2>
+      <div class="qs" id="presets" role="group">
         <button class="pick" type="button" data-p="base" aria-pressed="false" data-i18n="p_base"></button>
-        <button class="pick" type="button" data-p="trend" aria-pressed="false" data-i18n="p_trend"></button>
-        <button class="pick" type="button" data-p="imm10" aria-pressed="true" data-i18n="p_imm"></button>
-        <button class="pick" type="button" data-p="births10" aria-pressed="false" data-i18n="p_births"></button>
+        <button class="pick" type="button" data-p="tax15" aria-pressed="true" data-i18n="p_tax"></button>
         <button class="pick" type="button" data-p="ret68" aria-pressed="false" data-i18n="p_ret"></button>
-        <button class="pick" type="button" data-p="tax15" aria-pressed="false" data-i18n="p_tax"></button>
-        <button class="pick" type="button" data-p="infl3" aria-pressed="false" data-i18n="p_infl"></button>
         <button class="pick" type="button" data-p="yld4" aria-pressed="false" data-i18n="p_yld"></button>
+        <button class="pick" type="button" data-p="infl3" aria-pressed="false" data-i18n="p_infl"></button>
         <button class="pick" type="button" data-p="prod15" aria-pressed="false" data-i18n="p_prod"></button>
+        <button class="pick" type="button" data-p="imm10" aria-pressed="false" data-i18n="p_imm"></button>
+        <button class="pick" type="button" data-p="births10" aria-pressed="false" data-i18n="p_births"></button>
+        <button class="pick" type="button" data-p="trend" aria-pressed="false" data-i18n="p_trend"></button>
       </div>
-
-      <div class="grp" data-i18n="g_pop"></div>
-      <div class="ctl"><label for="tfr"><span data-i18n="l_tfr"></span><output id="o-tfr"></output></label>
-        <input id="tfr" type="range" min="-0.4" max="0.6" step="0.01" value="0"><span class="hint" id="h-tfr"></span></div>
-      <div class="ctl"><label for="imm"><span data-i18n="l_imm"></span><output id="o-imm"></output></label>
-        <input id="imm" type="range" min="0" max="45" step="0.1" value="16.4"><span class="hint" data-i18n="h_imm"></span></div>
-      <div class="ctl"><label for="marr"><span data-i18n="l_marr"></span><output id="o-marr"></output></label>
-        <input id="marr" type="range" min="0.8" max="1.15" step="0.01" value="1"><span class="hint" id="h-marr"></span></div>
-
-      <div class="grp" data-i18n="g_pen"></div>
-      <div class="ctl"><label for="ret"><span data-i18n="l_ret"></span><output id="o-ret"></output></label>
-        <input id="ret" type="range" min="60" max="72" step="1" value="65"><span class="hint" data-i18n="h_ret"></span></div>
-      <div class="ctl"><label for="prem"><span data-i18n="l_prem"></span><output id="o-prem"></output></label>
-        <input id="prem" type="range" min="0" max="2" step="0.1" value="0"><span class="hint" data-i18n="h_prem"></span></div>
 
       <div class="grp" data-i18n="g_tax"></div>
       <div class="ctl"><label for="taxC"><span data-i18n="l_taxC"></span><output id="o-taxC"></output></label>
         <input id="taxC" type="range" min="8" max="25" step="1" value="10"><span class="hint" id="h-taxC"></span></div>
       <div class="ctl"><label for="taxOth"><span data-i18n="l_taxOth"></span><output id="o-taxOth"></output></label>
         <input id="taxOth" type="range" min="-20" max="30" step="1" value="0"><span class="hint" data-i18n="h_taxOth"></span></div>
+
+      <div class="grp" data-i18n="g_pen"></div>
+      <div class="ctl"><label for="ret"><span data-i18n="l_ret"></span><output id="o-ret"></output></label>
+        <input id="ret" type="range" min="60" max="72" step="1" value="65"><span class="hint" data-i18n="h_ret"></span></div>
+      <div class="ctl"><label for="prem"><span data-i18n="l_prem"></span><output id="o-prem"></output></label>
+        <input id="prem" type="range" min="0" max="2" step="0.1" value="0"><span class="hint" id="h-prem"></span></div>
 
       <div class="grp" data-i18n="g_fin"></div>
       <div class="ctl"><label for="yld"><span data-i18n="l_yld"></span><output id="o-yld"></output></label>
@@ -186,6 +178,14 @@ footer { margin-top: 80px; color: var(--muted); font-size: 13px; max-width: 46em
       <div class="ctl"><label for="prod"><span data-i18n="l_prod"></span><output id="o-prod"></output></label>
         <input id="prod" type="range" min="0" max="2" step="0.1" value="0.9"><span class="hint" data-i18n="h_prod"></span></div>
 
+      <div class="grp" data-i18n="g_pop"></div>
+      <div class="ctl"><label for="tfr"><span data-i18n="l_tfr"></span><output id="o-tfr"></output></label>
+        <input id="tfr" type="range" min="-0.4" max="0.6" step="0.01" value="0"><span class="hint" id="h-tfr"></span></div>
+      <div class="ctl"><label for="imm"><span data-i18n="l_imm"></span><output id="o-imm"></output></label>
+        <input id="imm" type="range" min="0" max="45" step="0.1" value="16.4"><span class="hint" data-i18n="h_imm"></span></div>
+      <div class="ctl"><label for="marr"><span data-i18n="l_marr"></span><output id="o-marr"></output></label>
+        <input id="marr" type="range" min="0.8" max="1.15" step="0.01" value="1"><span class="hint" id="h-marr"></span></div>
+
       <details>
         <summary data-i18n="more"></summary>
         <div class="ctl"><label for="mig"><span data-i18n="l_mig"></span><output id="o-mig"></output></label>
@@ -195,66 +195,95 @@ footer { margin-top: 80px; color: var(--muted); font-size: 13px; max-width: 46em
       </details>
       <p id="status" role="status" aria-live="polite"></p>
     </form>
+
+    <div class="out">
+      <div class="timebar">
+        <span class="lab" data-i18n="yearLab"></span><span class="yv" id="yv">2040</span>
+        <input id="year" type="range" min="2020" max="2070" step="1" value="2040">
+        <button class="play" id="play" type="button"></button>
+      </div>
+
+      <nav class="jump" id="jump"><a href="#p-pop" data-i18n="tab_pop"></a><a href="#p-eco" data-i18n="tab_eco"></a><a href="#p-fin" data-i18n="tab_fin"></a><a href="#p-cmp" data-i18n="tab_cmp"></a><a href="#p-hh" data-i18n="tab_hh_sub"></a></nav>
+
+
+
+      <section class="panel macro" id="p-pop">
+        <h2 class="ph" data-i18n="tab_pop"></h2>
+        <p class="lead" data-i18n="popLead"></p>
+        <div class="pyrwrap"><svg id="pyr" role="img"></svg><p class="note" data-i18n="pyrKey"></p></div>
+        <dl class="rows" id="rows-pop"></dl>
+        <div class="charts">
+          <figure><h3 data-i18n="t_pop"></h3><p class="cap" data-i18n="c_pop"></p><div class="ro" id="ro-pop"></div><svg class="chart" id="c-pop" role="img"></svg></figure>
+          <figure><h3 data-i18n="t_dep"></h3><p class="cap" data-i18n="c_dep"></p><div class="ro" id="ro-dep"></div><svg class="chart" id="c-dep" role="img"></svg></figure>
+        </div>
+      </section>
+      <section class="panel macro" id="p-eco">
+        <h2 class="ph" data-i18n="tab_eco"></h2>
+        <p class="lead" data-i18n="ecoLead"></p>
+        <dl class="rows" id="rows-eco"></dl>
+        <div class="charts">
+          <figure><h3 data-i18n="t_real"></h3><p class="cap" data-i18n="c_real"></p><div class="ro" id="ro-real"></div><svg class="chart" id="c-real" role="img"></svg></figure>
+          <figure><h3 data-i18n="t_ben"></h3><p class="cap" data-i18n="c_ben"></p><div class="ro" id="ro-ben"></div><svg class="chart" id="c-ben" role="img"></svg></figure>
+          <figure><h3 data-i18n="t_repl"></h3><p class="cap" data-i18n="c_repl"></p><div class="ro" id="ro-repl"></div><svg class="chart" id="c-repl" role="img"></svg></figure>
+        </div>
+      </section>
+      <section class="panel macro" id="p-fin">
+        <h2 class="ph" data-i18n="tab_fin"></h2>
+        <p class="lead" data-i18n="finLead"></p>
+        <dl class="rows" id="rows-fin"></dl>
+        <div class="charts">
+          <figure><h3 data-i18n="t_pb"></h3><p class="cap" data-i18n="c_pb"></p><div class="ro" id="ro-pb"></div><svg class="chart" id="c-pb" role="img"></svg></figure>
+          <figure><h3 data-i18n="t_debt"></h3><p class="cap" data-i18n="c_debt"></p><div class="ro" id="ro-debt"></div><svg class="chart" id="c-debt" role="img"></svg></figure>
+          <figure><h3 data-i18n="t_int"></h3><p class="cap" data-i18n="c_int"></p><div class="ro" id="ro-int"></div><svg class="chart" id="c-int" role="img"></svg></figure>
+        </div>
+      </section>
+      <section class="panel macro" id="p-cmp">
+        <h2 class="ph" data-i18n="tab_cmp"></h2>
+        <p class="lead" data-i18n="cmpLead"></p>
+        <div class="cmpmet" id="cmpmet" role="group">
+          <button class="pick" type="button" data-m="f_debtgdp" aria-pressed="true" data-i18n="r_debt"></button>
+          <button class="pick" type="button" data-m="f_inttax" aria-pressed="false" data-i18n="r_int"></button>
+          <button class="pick" type="button" data-m="f_real" aria-pressed="false" data-i18n="r_real"></button>
+          <button class="pick" type="button" data-m="repl" aria-pressed="false" data-i18n="r_repl"></button>
+          <button class="pick" type="button" data-m="pop" aria-pressed="false" data-i18n="r_pop"></button>
+          <button class="pick" type="button" data-m="dep" aria-pressed="false" data-i18n="r_dep"></button>
+        </div>
+        <p class="note" id="cmpgloss"></p>
+        <div class="cmprows" id="cmprows"></div>
+        <p class="cmpst" id="cmpst" role="status"></p>
+        <p class="note" data-i18n="cmpNote"></p>
+      </section>
+
+      <section class="panel sub" id="p-hh">
+        <h2 class="ph sm" data-i18n="tab_hh_sub"></h2>
+        <p class="lead" data-i18n="hhLead"></p>
+        <div class="hhsel" id="hhsel" role="group">
+          <button class="pick" type="button" data-h="family" aria-pressed="true" data-i18n="h_family"></button>
+          <button class="pick" type="button" data-h="single" aria-pressed="false" data-i18n="h_single"></button>
+          <button class="pick" type="button" data-h="pension" aria-pressed="false" data-i18n="h_pension"></button>
+        </div>
+        <div class="hhin">
+          <label><span data-i18n="i_inc" id="i-inc-l"></span><input id="h-inc" type="number" min="0" step="10" value="800"></label>
+          <label><span data-i18n="i_con"></span><input id="h-con" type="number" min="0" step="10" value="480"></label>
+          <label><span data-i18n="i_loan"></span><input id="h-loan" type="number" min="0" step="100" value="3000"></label>
+          <label><span data-i18n="i_sav"></span><input id="h-sav" type="number" min="0" step="50" value="500"></label>
+          <label class="chk"><input id="h-ret" type="checkbox"><span data-i18n="i_ret"></span></label>
+        </div>
+        <dl class="rows" id="hhrows"></dl>
+        <p class="note" data-i18n="hhNote"></p>
+        <div class="charts one">
+          <figure><h3 data-i18n="t_hh"></h3><p class="cap" data-i18n="c_hh"></p><div class="ro" id="ro-hh"></div><svg class="chart" id="c-hh" role="img"></svg></figure>
+        </div>
+      </section>
+    </div>
   </div>
 
-  <section class="s">
-    <h2 data-i18n="trends"></h2>
-    <p class="note" data-i18n="chartKey"></p>
-
-    <h3 class="gh" data-i18n="gh1"></h3>
-    <div class="grid">
-      <figure><h3 data-i18n="t_pop"></h3><p class="cap" data-i18n="c_pop"></p><div class="ro" id="ro-pop"></div><svg class="chart" id="c-pop" role="img"></svg></figure>
-      <figure><h3 data-i18n="t_dep"></h3><p class="cap" data-i18n="c_dep"></p><div class="ro" id="ro-dep"></div><svg class="chart" id="c-dep" role="img"></svg></figure>
-    </div>
-
-    <h3 class="gh" data-i18n="gh2"></h3>
-    <div class="grid">
-      <figure><h3 data-i18n="t_real"></h3><p class="cap" data-i18n="c_real"></p><div class="ro" id="ro-real"></div><svg class="chart" id="c-real" role="img"></svg></figure>
-      <figure><h3 data-i18n="t_ben"></h3><p class="cap" data-i18n="c_ben"></p><div class="ro" id="ro-ben"></div><svg class="chart" id="c-ben" role="img"></svg></figure>
-      <figure><h3 data-i18n="t_repl"></h3><p class="cap" data-i18n="c_repl"></p><div class="ro" id="ro-repl"></div><svg class="chart" id="c-repl" role="img"></svg></figure>
-    </div>
-
-    <h3 class="gh" data-i18n="gh3"></h3>
-    <div class="grid">
-      <figure><h3 data-i18n="t_pb"></h3><p class="cap" data-i18n="c_pb"></p><div class="ro" id="ro-pb"></div><svg class="chart" id="c-pb" role="img"></svg></figure>
-      <figure><h3 data-i18n="t_debt"></h3><p class="cap" data-i18n="c_debt"></p><div class="ro" id="ro-debt"></div><svg class="chart" id="c-debt" role="img"></svg></figure>
-      <figure><h3 data-i18n="t_int"></h3><p class="cap" data-i18n="c_int"></p><div class="ro" id="ro-int"></div><svg class="chart" id="c-int" role="img"></svg></figure>
-    </div>
-  </section>
-
-  <section class="s">
-    <h2 data-i18n="glH"></h2>
-    <dl class="gl" id="gl"></dl>
-  </section>
-
-  <section class="s">
-    <h2 data-i18n="cmpH"></h2>
-    <p data-i18n="cmpP"></p>
-    <div class="tablewrap"><table id="cmp"></table></div>
-    <p class="prose" data-i18n="cmpTake1"></p>
-    <p class="prose" data-i18n="cmpTake2"></p>
-    <p class="prose" data-i18n="cmpTake3"></p>
-  </section>
-
-  <section class="s">
-    <h2 data-i18n="chkH"></h2>
-    <p data-i18n="chkP"></p>
-    <div class="tablewrap"><table id="check"></table></div>
-    <p class="prose" data-i18n="chkTake"></p>
-    <p class="prose" data-i18n="ancP"></p>
-    <div class="tablewrap"><table id="anchors"></table></div>
-  </section>
-
-  <section class="s">
-    <h2 data-i18n="limH"></h2>
-    <ul class="limits" id="limits"></ul>
-  </section>
-
-  <section class="s">
-    <h2 data-i18n="srcH"></h2>
+  <details class="about">
+    <summary data-i18n="aboutH"></summary>
+    <ul id="about-list"></ul>
+    <h3 data-i18n="srcH"></h3>
     <p class="src" id="src"></p>
-  </section>
-
+  </details>
   <footer data-i18n="foot"></footer>
 </div>
 
@@ -401,7 +430,7 @@ const JPABM = (function () {
   };
   function fiscal(out, p) {
     const T = out.pop.length, i0 = 4, Z = () => new Float64Array(T);
-    const f = { gdp: Z(), real: Z(), tax: Z(), taxc: Z(), ben: Z(), benpct: Z(), repl: Z(), pb: Z(), debt: Z(), debtgdp: Z(), intr: Z(), inttax: Z(), rav: Z(), gn: Z(), infl: Z(), yld: Z(), soc: Z() };
+    const f = { wage: Z(), price: Z(), gdp: Z(), real: Z(), tax: Z(), taxc: Z(), ben: Z(), benpct: Z(), repl: Z(), pb: Z(), debt: Z(), debtgdp: Z(), intr: Z(), inttax: Z(), rav: Z(), gn: Z(), infl: Z(), yld: Z(), soc: Z() };
     const ramp = y => y < p.policyStart ? 0 : Math.min(1, Math.max(0, (y - p.policyStart + 1) / Math.max(1, p.policyRamp)));
     let P = 1, A = 1, Y = FIS.N0, b = 0, Rprev = FIS.REPL0, D = FIS.D24, rav = FIS.R24, medK = 0, W0 = 1, popA = 0, pop014A = 0, pop65A = 0, B26 = 0, P5 = 1;
     const cohort = i => FIS.CB[0] * out.b0[i] + FIS.CB[1] * out.b1[i] + FIS.CB[2] * out.b2[i] + FIS.CB[3] * out.b3[i] + FIS.CB[4] * out.b4[i];
@@ -426,7 +455,7 @@ const JPABM = (function () {
       const B = pen + med + wel;
       const tc = FIS.TAXC0 * ((10 + r * (p.taxC - 10)) / 10) * N / FIS.N0, to = FIS.KO * N * (1 + r * p.taxOth / 100), tax = tc + to;
       rows.push({ i, y, N, P, W, B, tc, to, tax, yl, pi, Rr, pop });
-      f.gdp[i] = N; f.real[i] = 100 * Y / FIS.N0; f.tax[i] = tax; f.taxc[i] = tc; f.ben[i] = B; f.benpct[i] = 100 * B / N; f.repl[i] = 100 * Rr; f.infl[i] = 100 * pi; f.yld[i] = yl;
+      f.wage[i] = 100 * A; f.price[i] = 100 * P; f.gdp[i] = N; f.real[i] = 100 * Y / FIS.N0; f.tax[i] = tax; f.taxc[i] = tc; f.ben[i] = B; f.benpct[i] = 100 * B / N; f.repl[i] = 100 * Rr; f.infl[i] = 100 * pi; f.yld[i] = yl;
       if (i === 6) B26 = B;
       if (i === 5) P5 = P;
     }
@@ -446,7 +475,7 @@ const JPABM = (function () {
     out.f = f; out.repl = f.repl;
     for (const k of Object.keys(f)) out['f_' + k] = f[k];
   }
-  const KEYS = ['pop', 's014', 's1564', 's65', 'dep', 'repl', 'labor', 'tokyo', 'tfr', 'f_gdp', 'f_real', 'f_tax', 'f_taxc', 'f_ben', 'f_benpct', 'f_pb', 'f_debt', 'f_debtgdp', 'f_intr', 'f_inttax', 'f_rav', 'f_gn', 'f_infl', 'f_yld', 'f_soc'];
+  const KEYS = ['pop', 's014', 's1564', 's65', 'dep', 'repl', 'labor', 'tokyo', 'tfr', 'f_gdp', 'f_real', 'f_tax', 'f_taxc', 'f_ben', 'f_benpct', 'f_pb', 'f_debt', 'f_debtgdp', 'f_intr', 'f_inttax', 'f_rav', 'f_gn', 'f_infl', 'f_yld', 'f_soc', 'f_wage', 'f_price'];
   function stats(runs) {
     const T = runs[0].pop.length, res = {};
     for (const key of KEYS) { const mean = new Float64Array(T), lo = new Float64Array(T), hi = new Float64Array(T);
@@ -470,204 +499,145 @@ if (typeof module !== 'undefined') module.exports = JPABM;
   var $ = function (id) { return document.getElementById(id); };
   var MINUS = '−';
 
-  /* ------------------------------------------------------------------ text */
   var T = {
     ja: {
-      brand: 'Mini Japan',
-      h1: '<span class="nb">日本の人口・経済・財政を</span><span class="nb">2070年まで計算する</span>',
-      intro1: '出生率、移民、年金をもらい始める年齢、消費税率、長期金利、物価上昇率、生産性などの条件を変えたときに、人口、経済の大きさ、社会保障、国の債務がどう変わるかを計算するシミュレーションである。',
-      intro2: '人口は、約3万人の個人を1年ずつ動かすエージェントモデルで計算し、国立社会保障・人口問題研究所（社人研）の2023年推計と照合した。経済と財政は、国の一般会計と社会保障を2024〜26年度の公表値に合わせて組んでいる。将来の予測ではなく、条件を変えたときの差と向きを比べるためのモデルである。',
+      h1: '日本の税・年金・人口シミュレーター',
+      lede: '税率、金利、物価、年金の条件を変えると、家計、国の財政、経済、人口がどう変わるかを見られます。',
+      try: '試したいこと',
+      p_base: '何も変えない', p_tax: '消費税が15%になったら', p_ret: '年金が68歳からになったら', p_yld: '長期金利が4%になったら', p_infl: '物価が年3%で上がり続けたら', p_prod: '生産性が年1.5%伸びたら', p_imm: '移民が年10万人増えたら', p_births: '出生が年10万人増えたら', p_trend: '出生率が低いままだったら',
+      g_tax: '税', g_pen: '年金と保険料', g_fin: '金利と物価', g_gro: '成長', g_pop: '人口',
+      l_taxC: '消費税率', l_taxOth: '所得税・法人税などの税収', h_taxOth: '今の水準に対する増減。税率の引き上げや、課税対象の拡大を想定します。',
+      l_ret: '年金をもらい始める年齢', h_ret: '保険料を払う期間と、年金をもらう期間がこの年齢で切り替わります。',
+      l_prem: '保険料収入の増加',
+      l_yld: '長期金利（2030年ごろ以降）', h_yld: '10年国債の利回りです。2026年は2.6%で、4年かけてこの水準に近づきます。',
+      l_infl: '物価上昇率', h_infl: '年率です。2026年は2.4%で、その後この水準に近づきます。物価が上がっても金利は自動では上がらないので、金利も一緒に動かします。',
+      l_prod: '生産性の伸び', h_prod: '同じ人数・設備で生み出せる量の年あたりの増加率です。今の設定は0.9%。賃金の伸びにもなります。',
+      l_tfr: '出生率', l_imm: '外国人の純流入', h_imm: '入国した人から出国した人を引いた数です。社人研の中位は2040年に年16.4万人。入国は20〜39歳と仮定しています。', l_marr: '結婚する人の割合',
+      more: '詳細設定', l_mig: '地方から都市への移動', h_mig: '18〜30歳の未婚者が移動する確率にかける倍率です。', l_ramp: '変更が効き切るまでの年数', h_ramp: '2025年から少しずつ導入します。税・保険料・年金・人口の変更に使います。',
+      yearLab: '見たい年', play: '再生', pause: '停止',
+      tab_cmp: '政策を並べて比べる', cmpLead: '用意した政策を同じ基準で並べ、選んだ年に基準（何も変えない場合）から何が動くかを比べます。人口の政策は、出生と移民が同じ規模（年に約9〜10万人）になるようそろえています。', cmpNote: '1つの政策だけを変えた結果です。移民と出生は、人数が同じでも効き方が違います。移民は入国後すぐ働き手になり、生まれた子どもが働き手になるには約20年かかるためです。', cmpPol: { trend: ['出生率が低いまま', '出生率−0.13'], imm10: ['移民が年10万人増える', '純流入 26.4万人/年'], births10: ['出生が年約9万人増える', '出生率+0.18'], ret68: ['年金が68歳から', '開始年齢 65→68歳'], tax15: ['消費税15%', '10%→15%'], infl3: ['物価3%・金利3.5%', '物価と金利が上がる'], yld4: ['長期金利4%', '物価は2%のまま'], prod15: ['生産性1.5%', '基準は0.9%'] }, cmpBusy: '政策を計算中 ', cmpDone: '8回の平均です。年は上の「見たい年」に連動します。', cmpNA: '経済と財政の指標は2024年以降のみ表示します。', tab_hh: '家計', tab_hh_sub: '家計への影響（目安）', tab_fin: '国の財政', tab_eco: '経済と年金', tab_pop: '人口',
+      hhLead: '家族の収入や支出を入れると、今の設定で年間の家計がどう変わるかを計算します。金額は2024年の円で、物価の上昇は除いています。',
+      h_family: '共働き・子ども2人', h_single: '会社員の一人暮らし（20代）', h_pension: '年金で暮らす夫婦（70代）',
+      i_inc: '年収（万円）', i_con: '年間の消費（万円）', i_loan: '住宅ローン残高（万円）', i_sav: '預金（万円）', i_ret: '年金で暮らしている',
+      i_inc_pen: '年金の年額（万円）',
+      hhNote: '計算の前提：消費のうち税がかかるのは80%（食料品の軽減税率、家賃、医療などを除く）。保険料の増加分は会社と本人で折半。GDPの1%は賃金の約2.1%にあたると仮定（雇用者報酬を名目GDPの約47%と置いた）。住宅ローン金利は長期金利と同じ水準で動き、残高は変わらない。収入は生産性の伸びの分だけ増える。年金の額は、現役世代の賃金に所得代替率をかけて計算する。',
+      t_hh: '年ごとの家計収支の変化', c_hh: '今の設定と、何も変えない場合の差（万円/年）。プラスなら手元に残るお金が増えます。',
+      r_tax: '消費税の支払い', g_taxr: '買い物にかかる税。税率が上がるほど増えます。',
+      r_prem: '保険料の上乗せ', g_premr: '年金・医療などの保険料の増加分（本人負担）。年金暮らしの場合は0です。',
+      r_inc: '収入（実質）', g_incr: '年収を2024年の円で見た額。生産性が伸びるほど増えます。年金の場合は、年金額が現役世代の賃金に対してどう変わるかも反映します。',
+      r_loan: '住宅ローンの利息', g_loanr: '残高に長期金利をかけた年間の利息。金利が上がると増えます。',
+      r_sav: '預金の実質価値', g_savr: '今の預金で買えるものの量。物価が上がるほど減ります。',
+      r_liv: '同じ暮らしの費用（名目）', g_livr: '今と同じ生活を続けるのに、その年に必要な金額。物価が上がるほど増えます。',
+      r_net: '年間の家計収支の変化', g_netr: '収入の増減から、消費税・保険料・ローン利息の増減を引いた合計。基準との差で、プラスなら手元に残るお金が増えます。',
+      finLead: '国の収入と支出、借金の変化です。数字は名目GDP（物価を含む経済全体の金額）に対する割合で示します。',
+      ecoLead: '経済の大きさと、社会保障・年金の負担の変化です。',
+      popLead: '人口の形と、働き手と高齢者の人数の変化です。ピラミッドは、塗りが今の設定、枠線が何も変えない場合です。',
+      pyrKey: '年齢は5歳ごとにまとめ、100歳以上は一つにしています。',
       men: '男', women: '女', pyrUnit: '万人（5歳刻み）',
-      pyrKey: '塗りが現在の設定、枠線が基準（何も変えない場合）である。年齢は5歳ごとにまとめ、100歳以上は一つにしている。',
-      play: '再生', pause: '停止',
-      cond: '条件',
-      p_base: '基準（何も変えない）', p_trend: '出生率が最近の水準のまま', p_imm: '移民を年10万人増やす', p_births: '出生を年10万人増やす', p_ret: '年金は68歳から', p_tax: '消費税15%', p_infl: '物価3%・長期金利3.5%', p_yld: '長期金利4%', p_prod: '生産性1.5%',
-      g_pop: '人口', g_pen: '年金と保険料', g_tax: '税', g_fin: '金利と物価', g_gro: '成長',
-      l_tfr: '出生率', l_imm: '外国人の純流入', l_marr: '結婚する人の割合',
-      h_imm: '社人研の中位は2040年に年16.4万人。入国時は20〜39歳と仮定している。',
-      l_ret: '年金をもらい始める年齢', h_ret: '保険料を払う期間と年金をもらう期間が、この年齢で切り替わる。',
-      l_prem: '保険料収入の増加', h_prem: '保険料の引き上げなどで増やす収入額。1%は約6.7兆円（2025年度のGDP換算）。増えた分だけ、国の一般会計から社会保障への繰入が減る。',
-      l_taxC: '消費税率', l_taxOth: '所得税・法人税などの税収', h_taxOth: '基準に対する増減。税率の変更や課税ベースの拡大を想定する。',
-      l_yld: '長期金利（2030年ごろ以降）', h_yld: '10年国債の利回り。2026年は2.6%で、4年かけてこの水準に向かう。',
-      l_infl: '物価上昇率', h_infl: '年率。2026年は2.4%で、以後この水準に向かう。',
-      l_prod: '生産性の伸び', h_prod: '同じ人数・設備で生み出せる量の年あたりの増加率。基準は0.9%。',
-      more: '詳細設定', l_mig: '地方から都市への移動', h_mig: '18〜30歳の未婚者が移動する確率にかける倍率。', l_ramp: '政策が効き切るまでの年数', h_ramp: '2025年から段階的に導入する。人口・年金・税・保険料の変更に適用する。',
-      trends: '年ごとの変化',
-      chartKey: '太い線が現在の設定、灰色が基準、点線が社人研の中位推計である。薄い帯は計算14回のばらつき（10〜90%点）を表す。グラフをクリックすると、上のピラミッドの年が変わる。経済と財政の指標は2024年度から計算している。',
-      gh1: '人口', gh2: '経済と年金', gh3: '国の財政',
-      t_pop: '総人口', c_pop: '万人。日本に住む人の合計。',
-      t_dep: '従属人口指数', c_dep: '働き手（15〜64歳）100人に対する、子ども（0〜14歳）と高齢者（65歳以上）の人数。70なら、働き手10人で子どもと高齢者7人を支える計算になる。大きいほど現役世代の負担が重い。',
-      t_real: '実質GDP', c_real: '物価の変化を除いた経済の大きさ。2024年度を100とする。働く人の数、設備、生産性で決まる。',
-      t_ben: '社会保障給付費', c_ben: '年金・医療・介護などの給付の合計が、名目GDPの何%にあたるか。',
-      t_repl: '年金の所得代替率', c_repl: '年金額が現役世代の平均手取り賃金の何%にあたるか。2024年度は61.2%。現行制度は、現役世代が減るほど給付を自動で抑える。この調整は50%に達した時点で止めている。黒い印は2024年財政検証の2060年の見通し。',
-      t_pb: '国の基礎的財政収支', c_pb: '一般会計で、税収などの収入から、借金の利払いを除いた支出を引いた額が名目GDPの何%か。プラスなら黒字で、新たな借金に頼らずに政策経費をまかなえている。',
-      t_debt: '国の債務残高', c_debt: '普通国債の残高が名目GDPの何%か。経済の大きさに対する借金の重さを表す。',
-      t_int: '利払費の対税収比', c_int: '国債の利払費が税収の何%にあたるか。高いほど、税収のうち政策に使える部分が少ない。',
+      colNow: '今の設定', vs: '基準との差', na: '—', over65: '65歳以上',
+      r_pb: '基礎的財政収支', g_pb: '税収などから、借金の利払い以外の支出を引いた差。プラスなら、借金に頼らずに運営できています。',
+      r_debt: '国の債務残高', g_debt: '国債の残高が名目GDPの何%か。経済の大きさに対する借金の重さです。',
+      r_int: '利払費÷税収', g_int: '国債の利子の支払いが、税収の何%を占めるか。高いほど、政策に使える税収が減ります。',
+      r_real: '実質GDP', g_real: '物価の変化を除いた経済の大きさ。2024年度を100とします。',
+      r_ben: '社会保障給付費', g_ben: '年金・医療・介護などの給付の合計が、名目GDPの何%か。',
+      r_repl: '年金の所得代替率', g_repl: '年金額が、現役世代の平均手取り賃金の何%にあたるか。',
+      r_pop: '総人口', g_pop2: '日本に住む人の数。',
+      r_s65: '65歳以上の割合', g_s65: '人口のうち、65歳以上の人の割合。',
+      r_dep: '従属人口指数', g_dep: '働き手（15〜64歳）100人に対する、子ども（0〜14歳）と高齢者（65歳以上）の人数。大きいほど現役世代の負担が重くなります。',
+      t_pb: '基礎的財政収支（対GDP比）', c_pb: '税収などから、借金の利払い以外の支出を引いた差が名目GDPの何%か。プラスなら、借金に頼らずに運営できています。',
+      t_debt: '国の債務残高（対GDP比）', c_debt: '普通国債の残高が名目GDPの何%か。経済の大きさに対する借金の重さです。',
+      t_int: '利払費÷税収', c_int: '国債の利子の支払いが、税収の何%を占めるか。高いほど、政策に使える税収が減ります。',
+      t_real: '実質GDP', c_real: '物価の変化を除いた経済の大きさ。2024年度を100とします。働く人の数、設備、生産性で決まります。',
+      t_ben: '社会保障給付費（対GDP比）', c_ben: '年金・医療・介護などの給付の合計が、名目GDPの何%か。',
+      t_repl: '年金の所得代替率', c_repl: '年金額が現役世代の平均手取り賃金の何%にあたるか。2024年度は61.2%です。現役世代が減るほど、給付が自動で抑えられます（マクロ経済スライド）。この調整は50%で止めています。黒い印は、2024年の財政検証が示した2060年の見通しです。',
+      t_pop: '総人口', c_pop: '万人。点線は社人研の中位推計です。',
+      t_dep: '従属人口指数', c_dep: '働き手100人に対する、子どもと高齢者の人数。点線は社人研の中位推計です。',
       s_you: '設定', s_base: '基準', s_ipss: '社人研', mk24: '2024年度 61.2%', mk60: '財政検証 2060年 50.4〜57.6%',
-      d_pop: '総人口', d_s65: '65歳以上の割合', d_dep: '従属人口指数', d_real: '実質GDP（2024年度=100）', d_ben: '社会保障給付費（対GDP比）', d_repl: '年金の所得代替率', d_pb: '基礎的財政収支（対GDP比）', d_debt: '債務残高（対GDP比）', d_int: '利払費÷税収',
-      vs: '基準との差', colNow: '現在の設定', na: '—',
-      over65: '65歳以上',
-      glH: '用語の説明',
-      gl: [
-        ['合計特殊出生率', '1人の女性が一生のうちに産む子どもの数の平均。2024年は1.15。人口を保つには約2.07が必要とされる。'],
-        ['純流入', '入国した人から出国した人を引いた数。このモデルでは外国人の純流入だけを扱う。'],
-        ['従属人口指数', '働き手（15〜64歳）100人あたりの、子ども（0〜14歳）と高齢者（65歳以上）の人数。'],
-        ['名目GDPと実質GDP', '名目GDPは物価の上昇を含んだ金額。実質GDPは物価の変化を除いた量で、経済の実際の大きさを表す。'],
-        ['生産性の伸び', '同じ人数・設備でより多く生み出せるようになる割合。技術の進歩や働き方の改善で決まる。'],
-        ['社会保障給付費', '年金、医療、介護、福祉などとして国民に給付される金額の合計。財源は保険料と税金である。'],
-        ['所得代替率', '年金額が、現役世代の平均手取り賃金の何%にあたるか。高いほど手厚い。'],
-        ['マクロ経済スライド', '現役世代の減少や平均寿命の延びに合わせて、年金額の伸びを賃金の伸びより抑える仕組み。保険料の上限を決めたまま、制度を保つために入れられた。'],
-        ['基礎的財政収支（プライマリーバランス）', '税収などの収入から、過去の借金の利払いを除いた支出を引いた差。黒字なら、その年の政策経費を借金に頼らずまかなえている。'],
-        ['普通国債の残高', '国が発行して返済していない国債（建設国債、特例国債など）の残り。対GDP比にすると、経済の大きさに対する重さがわかる。'],
-        ['長期金利', '10年国債の利回り。国債の新規発行や借り換えにかかる金利の目安になる。'],
-        ['利払費', '国債の利子の支払い。債務残高と、平均してどれだけの利率がついているかで決まる。']],
-      cmpH: '条件を一つずつ変えた結果',
-      cmpP: '出生率と移民は単位が違うため、人口の条件は、2031〜40年に毎年およそ9万人ずつ人口が増える大きさにそろえた（段階的に導入）。税、金利、物価、生産性は、人口を基準のままにして一つずつ変えている。各行、Python版（正本）の20回の平均（1回10万人）である。',
-      cmpCols: ['条件', '大きさ', '2070年 総人口', '2070年 従属人口指数', '2070年 実質GDP', '2070年 債務残高（対GDP）', '2050年 利払費÷税収'],
-      cmpTake1: '人口では、人数が同じなら、移民のほうが出生より従属人口指数を約4.5倍下げる（基準との差は−5.6と−1.2）。入国する人は20〜39歳ですぐ働くと仮定しているのに対し、生まれた子が働き手になるまでには約20年かかるためである。ただし移民は日本人と同じ就労・結婚・出生の行動をとると仮定していて、受け入れにかかる費用は含まれない。',
-      cmpTake2: '財政では、金利が最も大きく効く。長期金利が長期的に1.5ポイント高い4%になると、2070年の債務残高は対GDP比で基準の約300%から約440%に膨らむ。物価が3%になっても金利が据え置かれれば債務比率は下がるが、金利も3.5%に上がるなら下がり方は小さい。債務は、名目の成長率と国債の利率のどちらが高いかで増え方が変わるためである。',
-      cmpTake3: '政策手段では、年金開始年齢を68歳にする効果が大きい。保険料を払う人が増え、給付を受ける人が減るため、2070年の債務残高は約223%に下がる。消費税15%は約213%、生産性を年1.5%にする場合は約204%になる。いずれも基準の約300%と比べた値で、増税による消費の減少や、金利が成長に与える影響は入っていない。',
-      chkH: '公式推計・公表値との照合',
-      chkP: '何も変えない場合のモデルを、社人研の2023年推計（出生中位・死亡中位）と並べた。',
-      chkCols: ['年', '総人口 モデル / 社人研（万人）', '従属人口指数', '65歳以上の割合（%）'],
-      chkTake: '10万人・20回のPython版で、2020〜70年の最大の差は、総人口+1.8%、従属人口指数+3.7ポイント、65歳以上の割合0.9ポイント、15〜64歳の割合1.0ポイント、0〜14歳の割合0.4ポイントだった。モデルのほうが少し高齢化が速い。調整に使ったのは、平均寿命（社人研の値に一致させた）と、65歳以上・75歳以上の割合に合わせた死亡率の傾き1つだけである。総人口、0〜14歳・15〜64歳の割合、従属人口指数は調整に使っていない。年金の所得代替率は、モデルでは2060年に約49.7%となり、2024年財政検証の50.4〜57.6%をわずかに下回る。',
-      ancP: '経済と財政の基準値は次のとおりである。公表値を使った入力と、合わせるための仮定を分けて示す。',
-      ancCols: ['項目', '値', '出典・扱い'],
-      anc: [
-        ['名目GDP（2024年度）', '642.4兆円', '社会保障給付費138.3兆円を対GDP比21.53%で割って求めた'],
-        ['社会保障給付費（2024年度）', '年金57.9、医療44.8、福祉その他35.6兆円', '社人研 社会保障費用統計'],
-        ['医療費の1人あたり額', '0〜14歳16.4、15〜44歳13.3、45〜64歳29.1、65〜74歳57.3、75歳以上92.3万円', '厚生労働省 国民医療費（2021年度）。年齢構成で医療費を伸ばす'],
-        ['消費税収', '25.0兆円（2024年度）、26.0兆円（2025年度）', '財務省。税率に比例させる'],
-        ['所得税・法人税など', '名目GDPの8.73%', '2025年度決算58.2兆円から算出。名目GDPに比例させる'],
-        ['国の社会保障関係費・その他歳出', '39.1兆円・46.1兆円（2026年度）', '財務省 2026年度予算。前者は給付費に比例、後者は物価に比例させる'],
-        ['普通国債残高', '1,079.7兆円（2024年度末）、1,104.3兆円（2025年度末）', '財務省'],
-        ['国債の平均利率', '0.83%（2024年度末）、0.98%（2025年度末）', '財務省。以後は新規発行の金利へ、毎年差の23%ずつ近づく（仮定）'],
-        ['利払費', '7.9兆円（2024年度）、9.4兆円（2025年度）、13.1兆円（2026年度予算）', '財務省。2026年度に合わせた調整係数0.87を、債務×平均利率にかける（仮定）'],
-        ['長期金利・物価', '2026年度 2.6%・2.4%、以後は設定値へ', '内閣府の中長期試算（2026年7月）の想定2.7%に近い値に置いた（仮定）'],
-        ['年金の所得代替率', '61.2%（2024年度）', '厚生労働省 財政検証。50%で調整を止める設定は、法律の見直し条項に合わせた'],
-        ['PBと利払費で説明できない債務の増加', '14.4兆円（2025年度）、以後は物価に連動', '2025年度の実績から逆算した調整項（仮定）']],
-      limH: 'このモデルでできないこと',
-      limits: [
-        '予測ではない。何も変えなくても、2070年の総人口は社人研より1.8%多く、従属人口指数は3.6ポイント高く出る。条件を変えたときの差と向きを読む用途に向く。',
-        '財政は、国の一般会計と普通国債が対象である。地方財政、年金積立金、特別会計は含まない。債務残高の対GDP比は、国と地方を合わせた数字や国際比較の数字より低く出る。',
-        '成長は、働く人の数と生産性の入力だけで決まる。税率、金利、物価は成長に影響しない。増税による消費の落ち込みや、金利が投資に与える影響は入っていない。',
-        '税収は、消費税が税率に比例し、所得税・法人税などが名目GDPに比例する。人口減による課税ベースの縮小は入っていない。金利と物価は別々の入力で、物価が上がっても金利は自動では上がらない。',
-        '年金は、賃金の伸びに連動して給付が増え、現役世代が減るほど自動で抑えられる設定である。給付水準は所得代替率50%に達した時点で止める。実際の制度の細部（国庫負担、積立金の取り崩し、基礎年金の調整期間の違い）は含まない。',
-        '出生の年齢パターンは2020年のまま固定し、未婚女性の出生は全体の2%とした。2023〜28年の出生率の経路は、社人研の「2028年まで1.3未満」という説明から作った近似である。',
-        '移民は単純化している。20〜39歳で入国し、結婚・出生・就労は日本人と同じとした。2020年の流入（年6万人）は仮定で、社人研が示すのは2040年の16.4万人だけである。',
-        '地域は4つの区分で、人口割合、移動の確率、出生率と賃金の差は仮定である。公式データでは確認していない。'],
+      chartKey: '',
+      aboutH: '計算の前提と出典',
+      about: [
+        '基準は「何も変えない場合」です。人口は社人研の2023年推計（出生中位・死亡中位）、経済と財政は2024〜26年度の公表値に合わせています。',
+        '人口は約3万人の個人を1年ずつ動かして計算します。何も変えない場合の2070年は、社人研より総人口が約2%多く、従属人口指数が約4ポイント高く出ます。',
+        '財政は、国の一般会計と普通国債だけを対象にしています。地方の財政、年金積立金、特別会計は含みません。',
+        '経済の成長は、働く人の数と生産性だけで決まります。増税、金利、物価が成長に与える影響は入っていないので、増税の効果は実際より大きく出ます。',
+        '年金は賃金に連動して増え、現役世代が減るほど自動で抑えられます。所得代替率50%に達したら調整を止めます。細かい制度（国庫負担、積立金の取り崩しなど）は入っていません。',
+        '移民は20〜39歳で入国し、結婚・出産・就労は日本人と同じと仮定しています。受け入れの費用は入っていません。地域は4つに分け、割合や移動の確率は仮定です。',
+        '計算はこのページの中で行います。同じ式のPython版（jpabm）があり、2つが誤差の範囲で一致することをテストで確認しています。']
+      ,
       srcH: '出典',
-      foot: '正本はPython版のモデル（jpabm）で、Colabの再現ノートブックも同じ式を使う。このページのJavaScriptはその移植で、計算は端末内で行う。両者が誤差の範囲で一致することは、テストで確認している。比較表はPython版の結果である。2026年10月16日更新。'
+      foot: '2026年10月更新。このページの結果は予測ではなく、条件を変えたときの違いを見るためのものです。'
     },
     en: {
-      brand: 'Mini Japan',
-      h1: 'Japan’s population, economy and public finances to <span class="nb">2070</span>',
-      intro1: 'A simulation of how population, economic output, social security and national debt change when fertility, immigration, the pension age, the consumption tax rate, long-term interest rates, inflation and productivity are changed.',
-      intro2: 'Population is computed by an agent-based model that moves about 30,000 individuals year by year, and is checked against the 2023 projection of IPSS, the National Institute of Population and Social Security Research. The economy and public finances are built on the national general account and social security, matched to published figures for fiscal 2024 to 2026. It is not a forecast. It compares the size and direction of differences between scenarios.',
+      h1: 'Japan tax, pension and population simulator',
+      lede: 'Change tax rates, interest rates, inflation and pension rules, and see what happens to households, government finances, the economy and the population.',
+      try: 'Try a question',
+      p_base: 'Change nothing', p_tax: 'Consumption tax goes to 15%', p_ret: 'Pensions start at 68', p_yld: 'Long-term yields reach 4%', p_infl: 'Inflation stays at 3% a year', p_prod: 'Productivity grows 1.5% a year', p_imm: 'Immigration rises by 100,000 a year', p_births: 'Births rise by 100,000 a year', p_trend: 'Fertility stays low',
+      g_tax: 'Taxes', g_pen: 'Pensions and contributions', g_fin: 'Interest rates and prices', g_gro: 'Growth', g_pop: 'Population',
+      l_taxC: 'Consumption tax rate', l_taxOth: 'Income, corporate and other taxes', h_taxOth: 'Change against today’s level, for example from higher rates or a wider tax base.',
+      l_ret: 'Age pensions start', h_ret: 'Paying in and drawing a pension switch over at this age.',
+      l_prem: 'Extra contribution revenue',
+      l_yld: 'Long-term yield (from about 2030)', h_yld: 'The yield on 10-year government bonds. It is 2.6% in 2026 and moves to this level over four years.',
+      l_infl: 'Inflation', h_infl: 'Annual rate. It is 2.4% in 2026 and moves to this level afterwards. Higher inflation does not raise yields automatically, so move yields too.',
+      l_prod: 'Productivity growth', h_prod: 'Yearly increase in output from the same workers and equipment. Currently 0.9%. It also drives wage growth.',
+      l_tfr: 'Fertility rate', l_imm: 'Net foreign inflow', h_imm: 'People entering minus people leaving. IPSS medium reaches 164,000 a year by 2040. Arrivals are assumed to be 20 to 39.', l_marr: 'Share who marry',
+      more: 'More settings', l_mig: 'Rural-to-city moves', h_mig: 'Multiplies the yearly chance that unmarried 18 to 30 year olds move.', l_ramp: 'Years until changes take full effect', h_ramp: 'Phased in from 2025. Applies to tax, contribution, pension and population changes.',
+      yearLab: 'Year', play: 'Play', pause: 'Pause',
+      tab_cmp: 'Policies side by side', cmpLead: 'Set the prepared policies side by side and see what each moves, against the baseline (no change), in the chosen year. The two population policies are sized alike: births and immigration each add about 90,000 to 100,000 people a year.', cmpNote: 'Each row changes one policy only. Immigration and births work differently at the same headcount: arrivals join the workforce at once, while a newborn takes about 20 years.', cmpPol: { trend: ['Fertility stays low', 'Fertility −0.13'], imm10: ['Immigration +100,000 a year', 'Net inflow 264,000 a year'], births10: ['Births +about 90,000 a year', 'Fertility +0.18'], ret68: ['Pensions from 68', 'Pension age 65 to 68'], tax15: ['Consumption tax 15%', '10% to 15%'], infl3: ['Inflation 3%, yield 3.5%', 'Both rise'], yld4: ['Long-term yield 4%', 'Inflation stays 2%'], prod15: ['Productivity 1.5%', 'Baseline 0.9%'] }, cmpBusy: 'Calculating policies ', cmpDone: 'Average of 8 runs. The year follows the year slider above.', cmpNA: 'Economic and fiscal indicators are shown from 2024 on.', tab_hh: 'Household', tab_hh_sub: 'What it means for a household', tab_fin: 'Government finances', tab_eco: 'Economy and pensions', tab_pop: 'Population',
+      hhLead: 'Enter a household’s income and spending to see how its yearly budget changes under the current settings. Amounts are in 2024 yen, with price increases removed.',
+      h_family: 'Two earners, two children', h_single: 'Single employee in their 20s', h_pension: 'Retired couple in their 70s',
+      i_inc: 'Income (¥10,000)', i_con: 'Yearly spending (¥10,000)', i_loan: 'Mortgage balance (¥10,000)', i_sav: 'Savings (¥10,000)', i_ret: 'Lives on a pension',
+      i_inc_pen: 'Yearly pension (¥10,000)',
+      hhNote: 'Assumptions: 80% of spending is taxed (food at the reduced rate, rent and health care are not). Extra contributions are split between employer and employee. 1% of GDP is taken to be about 2.1% of wages (employee compensation is set at about 47% of nominal GDP). The mortgage rate moves with the long-term yield and the balance stays the same. Income rises with productivity growth. Pensions are the replacement rate times workers’ wages.',
+      t_hh: 'Household budget change by year', c_hh: 'Difference between the current settings and no change, in ¥10,000 a year. Positive means more money left over.',
+      r_tax: 'Consumption tax paid', g_taxr: 'Tax on purchases. It rises with the rate.',
+      r_prem: 'Extra contributions', g_premr: 'Higher pension and health insurance contributions (the household’s share). Zero for people living on a pension.',
+      r_inc: 'Income (real)', g_incr: 'Yearly income in 2024 yen. It rises with productivity. For a pension it also reflects how the pension changes against workers’ wages.',
+      r_loan: 'Mortgage interest', g_loanr: 'Balance times the long-term yield. It rises when yields rise.',
+      r_sav: 'Real value of savings', g_savr: 'What today’s savings can buy. It falls as prices rise.',
+      r_liv: 'Cost of the same lifestyle (nominal)', g_livr: 'What it takes that year to keep living as today. It rises with prices.',
+      r_net: 'Change in yearly household budget', g_netr: 'Change in income minus the changes in consumption tax, contributions and mortgage interest, against no change. Positive means more money left over.',
+      finLead: 'Government income, spending and debt. Figures are shown against nominal GDP, the economy’s total value including prices.',
+      ecoLead: 'The size of the economy and the burden of social security and pensions.',
+      popLead: 'The shape of the population and the numbers of workers and older people. In the pyramid, filled bars are the current settings and the outline is no change.',
+      pyrKey: 'Ages are grouped in fives, with 100 and over as one band.',
       men: 'Men', women: 'Women', pyrUnit: 'million people per 5-year band',
-      pyrKey: 'Filled bars show the current settings. The outline shows the baseline, where nothing is changed. Ages are grouped in fives, with 100 and over as one band.',
-      play: 'Play', pause: 'Pause',
-      cond: 'Conditions',
-      p_base: 'Baseline (no change)', p_trend: 'Fertility stays at its recent level', p_imm: 'Immigration +100,000 a year', p_births: 'Births +100,000 a year', p_ret: 'Pensions from 68', p_tax: 'Consumption tax 15%', p_infl: 'Inflation 3%, long-term yield 3.5%', p_yld: 'Long-term yield 4%', p_prod: 'Productivity 1.5%',
-      g_pop: 'Population', g_pen: 'Pensions and contributions', g_tax: 'Taxes', g_fin: 'Interest rates and prices', g_gro: 'Growth',
-      l_tfr: 'Fertility rate', l_imm: 'Net foreign inflow', l_marr: 'Share who marry',
-      h_imm: 'IPSS medium reaches 164,000 a year by 2040. Arrivals are assumed to be aged 20 to 39.',
-      l_ret: 'Pension age', h_ret: 'Paying in and drawing a pension switch over at this age.',
-      l_prem: 'Extra contribution revenue', h_prem: 'Additional revenue from higher social insurance contributions. 1% is about ¥6.7 trillion (FY2025 GDP). Each yen reduces the transfer from the general account to social security.',
-      l_taxC: 'Consumption tax rate', l_taxOth: 'Income, corporate and other taxes', h_taxOth: 'Change in revenue against the baseline, for example from rate changes or a wider tax base.',
-      l_yld: 'Long-term yield (from about 2030)', h_yld: 'Yield on 10-year government bonds. It is 2.6% in 2026 and moves to this level over four years.',
-      l_infl: 'Inflation', h_infl: 'Annual rate. It is 2.4% in 2026 and moves to this level afterwards.',
-      l_prod: 'Productivity growth', h_prod: 'Yearly increase in output from the same workers and capital. Baseline is 0.9%.',
-      more: 'More settings', l_mig: 'Rural-to-city moves', h_mig: 'Multiplies the yearly chance that unmarried 18 to 30 year olds move.', l_ramp: 'Years to take full effect', h_ramp: 'Phased in from 2025. Applies to population, pension, tax and contribution changes.',
-      trends: 'Year by year',
-      chartKey: 'The thick line is the current setting, grey is the baseline and the dashed line is IPSS medium. The pale band is the spread across 14 runs (10th to 90th percentile). Clicking a chart changes the year in the pyramid above. Economic and fiscal indicators start in fiscal 2024.',
-      gh1: 'Population', gh2: 'Economy and pensions', gh3: 'Government finances',
-      t_pop: 'Total population', c_pop: 'Million people living in Japan.',
-      t_dep: 'Dependency ratio', c_dep: 'People under 15 and over 65 for every 100 people aged 15 to 64. At 70, ten workers support seven children and older people. A higher number is a heavier load on the working-age population.',
-      t_real: 'Real GDP', c_real: 'Output with price changes removed, fiscal 2024 = 100. Determined by the number of workers, capital and productivity.',
-      t_ben: 'Social security benefits', c_ben: 'Pensions, health care, long-term care and welfare benefits together, as a percentage of nominal GDP.',
-      t_repl: 'Pension replacement rate', c_repl: 'Pension as a percentage of the average take-home pay of workers. It was 61.2% in fiscal 2024. Under current rules benefits are held down automatically as the workforce shrinks; the model stops this adjustment at 50%. Black marks show the 2024 official valuation for 2060.',
-      t_pb: 'National primary balance', c_pb: 'General account revenue minus spending other than interest on debt, as a percentage of nominal GDP. A positive number means policy spending is covered without new borrowing.',
-      t_debt: 'National debt', c_debt: 'Outstanding ordinary government bonds as a percentage of nominal GDP. Shows the weight of debt relative to the size of the economy.',
-      t_int: 'Interest payments relative to tax revenue', c_int: 'Interest on government bonds as a percentage of tax revenue. The higher it is, the less tax revenue remains for policy.',
+      colNow: 'Current', vs: 'vs. no change', na: '—', over65: '65+',
+      r_pb: 'Primary balance', g_pb: 'Revenue minus spending other than interest on debt. Positive means running without new borrowing.',
+      r_debt: 'National debt', g_debt: 'Government bonds outstanding as a percentage of nominal GDP: the weight of debt relative to the economy.',
+      r_int: 'Interest ÷ tax revenue', g_int: 'What share of tax revenue goes to interest on government bonds. The higher it is, the less tax revenue remains for policy.',
+      r_real: 'Real GDP', g_real: 'Size of the economy with price changes removed. Fiscal 2024 = 100.',
+      r_ben: 'Social security benefits', g_ben: 'Pensions, health care, long-term care and other benefits together, as a percentage of nominal GDP.',
+      r_repl: 'Pension replacement rate', g_repl: 'The pension as a percentage of average take-home pay of workers.',
+      r_pop: 'Total population', g_pop2: 'People living in Japan.',
+      r_s65: 'Share aged 65+', g_s65: 'Share of the population aged 65 or over.',
+      r_dep: 'Dependency ratio', g_dep: 'Children (under 15) and older people (65+) for every 100 people aged 15 to 64. Higher means a heavier load on workers.',
+      t_pb: 'Primary balance (% of GDP)', c_pb: 'Revenue minus spending other than interest on debt, as a percentage of nominal GDP. Positive means running without new borrowing.',
+      t_debt: 'National debt (% of GDP)', c_debt: 'Ordinary government bonds outstanding as a percentage of nominal GDP: the weight of debt relative to the economy.',
+      t_int: 'Interest ÷ tax revenue', c_int: 'What share of tax revenue goes to interest on government bonds. The higher it is, the less tax revenue remains for policy.',
+      t_real: 'Real GDP', c_real: 'Size of the economy with price changes removed, fiscal 2024 = 100. Determined by the number of workers, equipment and productivity.',
+      t_ben: 'Social security benefits (% of GDP)', c_ben: 'Pensions, health care, long-term care and other benefits together, as a percentage of nominal GDP.',
+      t_repl: 'Pension replacement rate', c_repl: 'The pension as a percentage of average take-home pay of workers. It was 61.2% in fiscal 2024. Benefits are held down automatically as the workforce shrinks (the macro-economic slide), and the model stops this at 50%. Black marks show the 2024 official valuation for 2060.',
+      t_pop: 'Total population', c_pop: 'Million people. The dashed line is IPSS medium.',
+      t_dep: 'Dependency ratio', c_dep: 'Children and older people for every 100 workers. The dashed line is IPSS medium.',
       s_you: 'Current', s_base: 'Base', s_ipss: 'IPSS', mk24: 'FY2024 61.2%', mk60: 'Valuation, 2060: 50.4–57.6%',
-      d_pop: 'Total population', d_s65: 'Share aged 65+', d_dep: 'Dependency ratio', d_real: 'Real GDP (FY2024 = 100)', d_ben: 'Social security benefits (% of GDP)', d_repl: 'Pension replacement rate', d_pb: 'Primary balance (% of GDP)', d_debt: 'Debt (% of GDP)', d_int: 'Interest ÷ tax revenue',
-      vs: 'vs. baseline', colNow: 'Current', na: '—',
-      over65: '65+',
-      glH: 'Glossary',
-      gl: [
-        ['Total fertility rate', 'The average number of children a woman has over her lifetime. It was 1.15 in 2024. About 2.07 is needed to keep the population stable.'],
-        ['Net inflow', 'People entering minus people leaving. The model covers only net inflow of foreign nationals.'],
-        ['Dependency ratio', 'People under 15 and over 65 per 100 people aged 15 to 64.'],
-        ['Nominal and real GDP', 'Nominal GDP includes price increases. Real GDP removes price changes and measures the actual size of the economy.'],
-        ['Productivity growth', 'The rate at which the same workers and capital come to produce more, through better technology and ways of working.'],
-        ['Social security benefits', 'Total paid to residents as pensions, health care, long-term care and welfare. Financed by contributions and taxes.'],
-        ['Replacement rate', 'The pension as a percentage of average take-home pay of workers. Higher means more generous.'],
-        ['Macro-economic slide', 'A mechanism that holds pension growth below wage growth as the workforce shrinks and life expectancy rises. It was introduced so that contributions could be capped while keeping the system sustainable.'],
-        ['Primary balance', 'Revenue minus spending excluding interest on past debt. A surplus means the year’s policy spending is paid for without borrowing.'],
-        ['Ordinary government bonds', 'Outstanding bonds issued by the national government, including construction and deficit-financing bonds. As a share of GDP it shows the weight relative to the economy.'],
-        ['Long-term yield', 'The yield on 10-year government bonds, a guide to the interest cost of new issuance and refinancing.'],
-        ['Interest payments', 'Interest paid on government bonds. Depends on the debt outstanding and its average interest rate.']],
-      cmpH: 'Results, one change at a time',
-      cmpP: 'Fertility and immigration come in different units, so the population changes are sized to add about 90,000 people a year on average over 2031 to 2040 (phased in). Taxes, interest rates, inflation and productivity are changed one at a time with population left at baseline. Each row is the average of 20 runs of the Python reference model with 100,000 agents.',
-      cmpCols: ['Change', 'Size', 'Population 2070', 'Dependency ratio 2070', 'Real GDP 2070', 'Debt 2070 (% of GDP)', 'Interest ÷ tax 2050'],
-      cmpTake1: 'On population, headcount for headcount, immigration lowers the 2070 dependency ratio about 4.5 times as much as births do (−5.6 versus −1.2 against the baseline). Arrivals are assumed to be aged 20 to 39 and working straight away, while a newborn takes about 20 years to join the workforce. Immigrants are assumed to work, marry and have children like everyone else, and the cost of receiving them is not counted.',
-      cmpTake2: 'On public finances, the interest rate matters most. If the long-term yield settles at 4%, 1.5 points higher, debt in 2070 rises from about 300% of GDP in the baseline to about 440%. Inflation of 3% lowers the debt ratio if yields stay put, but by much less if yields rise to 3.5%. Debt grows or shrinks according to whether nominal growth or the interest rate on bonds is higher.',
-      cmpTake3: 'Among policy levers, raising the pension age to 68 has a large effect. More people pay in and fewer draw benefits, so debt in 2070 falls to about 223% of GDP. A 15% consumption tax gives about 213%, and productivity growth of 1.5% a year about 204%. All are compared with about 300% in the baseline, and none includes the fall in consumption caused by a tax rise or the effect of interest rates on growth.',
-      chkH: 'Checks against official projections and figures',
-      chkP: 'The unchanged baseline next to the IPSS 2023 projection (medium fertility, medium mortality).',
-      chkCols: ['Year', 'Population: model / IPSS (million)', 'Dependency ratio', 'Share aged 65+ (%)'],
-      chkTake: 'In the Python version (100,000 agents, 20 runs) the largest gaps over 2020 to 2070 were +1.8% for population, +3.7 points for the dependency ratio, 0.9 points for the 65+ share, 1.0 for the 15 to 64 share and 0.4 for the under-15 share. The model ages slightly faster than IPSS. Only two things were tuned: life expectancy, matched to IPSS, and one mortality slope fitted to the 65+ and 75+ shares. Population, the under-15 and 15 to 64 shares and the dependency ratio were not used for fitting. The pension replacement rate comes to about 49.7% in 2060 in the model, just below the 50.4 to 57.6% in the 2024 official valuation.',
-      ancP: 'The economic and fiscal baseline is below. Inputs taken from published figures are separated from assumptions made to fit.',
-      ancCols: ['Item', 'Value', 'Source or treatment'],
-      anc: [
-        ['Nominal GDP (FY2024)', '¥642.4 trillion', 'Social security benefits of ¥138.3 trillion divided by 21.53% of GDP'],
-        ['Social security benefits (FY2024)', 'Pensions 57.9, health care 44.8, welfare and other 35.6 (¥ trillion)', 'IPSS Social Security Expenditure Statistics'],
-        ['Health spending per person', 'Under 15: 164,000; 15–44: 133,000; 45–64: 291,000; 65–74: 573,000; 75+: 923,000 yen', 'MHLW National Health Expenditure (FY2021). Used to grow health spending with the age structure'],
-        ['Consumption tax revenue', '¥25.0 trillion (FY2024), ¥26.0 trillion (FY2025)', 'Ministry of Finance. Scaled with the tax rate'],
-        ['Income, corporate and other taxes', '8.73% of nominal GDP', 'From the FY2025 outturn of ¥58.2 trillion. Scaled with nominal GDP'],
-        ['National social security and other spending', '¥39.1 trillion and ¥46.1 trillion (FY2026)', 'Ministry of Finance FY2026 budget. The first scales with benefits, the second with prices'],
-        ['Ordinary government bonds outstanding', '¥1,079.7 trillion (end FY2024), ¥1,104.3 trillion (end FY2025)', 'Ministry of Finance'],
-        ['Average interest rate on bonds', '0.83% (end FY2024), 0.98% (end FY2025)', 'Ministry of Finance. After that it closes 23% of the gap to the new-issue rate each year (assumption)'],
-        ['Interest payments', '¥7.9 trillion (FY2024), ¥9.4 trillion (FY2025), ¥13.1 trillion (FY2026 budget)', 'Ministry of Finance. A factor of 0.87 on debt × average rate fits FY2026 (assumption)'],
-        ['Long-term yield and inflation', 'FY2026: 2.6% and 2.4%, then toward the chosen values', 'Set close to the 2.7% assumed in the Cabinet Office projection of July 2026 (assumption)'],
-        ['Pension replacement rate', '61.2% (FY2024)', 'MHLW pension valuation. Stopping the adjustment at 50% follows the review clause in law'],
-        ['Debt growth not explained by primary balance and interest', '¥14.4 trillion (FY2025), then moves with prices', 'Back-solved from FY2025 outturn (assumption)']],
-      limH: 'What it can’t do',
-      limits: [
-        'It is not a forecast. With nothing changed, the 2070 population is 1.8% above the IPSS figure and the dependency ratio 3.6 points higher. It is suited to reading the size and direction of differences when something is changed.',
-        'Public finances cover the national general account and ordinary government bonds. Local governments, the pension reserve and special accounts are excluded, so the debt ratio is lower than figures for national and local government combined or international comparisons.',
-        'Growth is determined only by the number of workers and productivity inputs. Tax rates, interest rates and inflation do not affect growth. The fall in consumption after a tax rise and the effect of interest rates on investment are not included.',
-        'Consumption tax revenue is proportional to the rate, and income and corporate taxes are proportional to nominal GDP. Shrinking of the tax base from population decline is not included. Interest rates and inflation are separate inputs, so higher inflation does not push yields up automatically.',
-        'Pension benefits rise with wages and are held down automatically as the workforce shrinks, with the adjustment stopping at a 50% replacement rate. Details of the actual system such as the national subsidy, reserve drawdown and differing adjustment periods for the basic pension are not included.',
-        'The age pattern of births is fixed at its 2020 shape, and births to unmarried women are set at 2% of the total. The 2023 to 2028 fertility path approximates IPSS saying the rate stays under 1.3 until 2028.',
-        'Immigration is simplified. Arrivals are aged 20 to 39 and marry, have children and work like everyone else. The 2020 inflow (60,000 a year) is an assumption; IPSS only states 164,000 for 2040.',
-        'There are four regions, and their population shares, migration chances and fertility and wage differences are assumptions that have not been checked against official data.'],
+      chartKey: '',
+      aboutH: 'Assumptions and sources',
+      about: [
+        'The baseline is “change nothing”. Population follows the 2023 IPSS projection (medium fertility, medium mortality), and the economy and public finances are matched to published figures for fiscal 2024 to 2026.',
+        'Population is computed by moving about 30,000 individuals year by year. With nothing changed, 2070 population is about 2% above IPSS and the dependency ratio about 4 points higher.',
+        'Public finances cover the national general account and ordinary government bonds only. Local governments, the pension reserve and special accounts are excluded.',
+        'Growth is determined only by the number of workers and productivity. The effect of tax rises, interest rates and inflation on growth is not included, so tax-rise effects come out larger than they would in reality.',
+        'Pensions rise with wages and are held down automatically as the workforce shrinks, stopping at a 50% replacement rate. Details such as the national subsidy and reserve drawdown are not included.',
+        'Immigrants arrive aged 20 to 39 and marry, have children and work like everyone else. The cost of receiving them is not included. There are four regions, and their shares and migration chances are assumptions.',
+        'Everything is calculated inside this page. A Python version of the same equations (jpabm) exists, and a test checks that the two agree within sampling error.'],
       srcH: 'Sources',
-      foot: 'The reference model is the Python package (jpabm), and the Colab notebook runs the same equations. This page’s JavaScript is a port that runs on your device, and a test checks that the two agree within sampling error. The comparison table comes from the Python model. Updated 16 October 2026.'
+      foot: 'Updated October 2026. Results are not forecasts. They show the difference a change makes.'
     }
   };
   var SRC = {
-    ja: '<a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T02-08.files/sheet001.htm">社人研 人口統計資料集2023 表2-8</a>、<a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T02-09.files/sheet001.htm">表2-9</a>、<a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T04-07.files/sheet001.htm">表4-7（年齢別出生率）</a>、<a href="https://www.mof.go.jp/policy/budget/fiscal_condition/related_data/202604_00.pdf">財務省 日本の財政関係資料（2026年4月）</a>、<a href="https://www.mhlw.go.jp/content/12600000/001706349.pdf">厚生労働省 社会保障給付費の推移</a>、<a href="https://www5.cao.go.jp/keizai2/keizai-syakai/shisan/2607point.pdf">内閣府 中長期の経済財政に関する試算（2026年7月）</a>、<a href="https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260731a.pdf">日本銀行 金融政策決定会合（2026年7月）</a>、<a href="https://www.mhlw.go.jp/wp/hakusyo/kousei/25-2/dl/01.pdf">厚生労働白書</a>、<a href="https://www.nri.com/jp/knowledge/blog/lst/2024/fis/kiuchi/0703_2">野村総研 2024年財政検証</a>。2020年の年齢別人口は、社人研と統計局の推計を載せた<a href="https://en.wikipedia.org/wiki/Demographics_of_Japan">Wikipediaの表</a>（二次情報）を使った。',
+    ja: '<a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T02-08.files/sheet001.htm">社人研 人口統計資料集2023 表2-8</a>、<a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T02-09.files/sheet001.htm">表2-9</a>、<a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T04-07.files/sheet001.htm">表4-7（年齢別出生率）</a>、<a href="https://www.mof.go.jp/policy/budget/fiscal_condition/related_data/202604_00.pdf">財務省 日本の財政関係資料（2026年4月）</a>、<a href="https://www.mhlw.go.jp/content/12600000/001706349.pdf">厚生労働省 社会保障給付費の推移</a>、<a href="https://www5.cao.go.jp/keizai2/keizai-syakai/shisan/2607point.pdf">内閣府 中長期の経済財政に関する試算（2026年7月）</a>、<a href="https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260731a.pdf">日本銀行 金融政策決定会合（2026年7月）</a>、<a href="https://www.mhlw.go.jp/wp/hakusyo/kousei/25-2/dl/01.pdf">厚生労働白書</a>、<a href="https://www.nri.com/jp/knowledge/blog/lst/2024/fis/kiuchi/0703_2">野村総研 2024年財政検証</a>。2020年の年齢別人口は、社人研と統計局の推計を載せた<a href="https://en.wikipedia.org/wiki/Demographics_of_Japan">Wikipediaの表</a>（二次情報）を使っています。',
     en: '<a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T02-08.files/sheet001.htm">IPSS Population Statistics 2023, table 2-8</a>, <a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T02-09.files/sheet001.htm">table 2-9</a>, <a href="https://www.ipss.go.jp/syoushika/tohkei/Data/Popular2023RE/T04-07.files/sheet001.htm">table 4-7 (age-specific fertility)</a>, <a href="https://www.mof.go.jp/policy/budget/fiscal_condition/related_data/202604_00.pdf">Ministry of Finance, Japanese Public Finance Fact Sheet (April 2026)</a>, <a href="https://www.mhlw.go.jp/content/12600000/001706349.pdf">MHLW, trends in social security benefits</a>, <a href="https://www5.cao.go.jp/keizai2/keizai-syakai/shisan/2607point.pdf">Cabinet Office, Medium- to Long-Term Economic and Fiscal Projections (July 2026)</a>, <a href="https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260731a.pdf">Bank of Japan, Monetary Policy Meeting (July 2026)</a>, <a href="https://www.mhlw.go.jp/wp/hakusyo/kousei/25-2/dl/01.pdf">MHLW white paper</a>, <a href="https://www.nri.com/jp/knowledge/blog/lst/2024/fis/kiuchi/0703_2">NRI on the 2024 pension valuation</a>. The 2020 age structure comes from a secondary source, a <a href="https://en.wikipedia.org/wiki/Demographics_of_Japan">Wikipedia table</a> citing IPSS and the Statistics Bureau.'
   };
-  var CMP = {"base": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 100.18014317821736, "debt70": 296.42587785023574, "it50": 37.767770183581995, "repl60": 49.660307189348075, "pb50": -0.8819413099497322, "ben50": 25.382973192950057, "extra_births_2031_40": 0.0}, "imm10": {"pop70": 93.86025583300002, "dep70": 89.86669284851685, "real70": 109.84481683707907, "debt70": 251.0696894873986, "it50": 35.508483620940716, "repl60": 49.64833061424447, "pb50": -0.37373853382937916, "ben50": 24.5124011835695, "extra_births_2031_40": 14891.535299999965}, "births10": {"pop70": 92.815325442, "dep70": 94.27632019712868, "real70": 105.00587682972142, "debt70": 279.0035086265819, "it50": 37.74752190296123, "repl60": 49.638357239778315, "pb50": -0.899731543859537, "ben50": 25.547660996650485, "extra_births_2031_40": 93455.2641}, "marr10": {"pop70": 90.95498730700001, "dep70": 94.96555963955163, "real70": 102.66411915825566, "debt70": 287.8530187629007, "it50": 37.821793673910975, "repl60": 49.6679475135482, "pb50": -0.918994880861498, "ben50": 25.530355618933168, "extra_births_2031_40": 43286.999899999995}, "ret68": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 108.77644230729773, "debt70": 222.6685666515344, "it50": 30.87345668305624, "repl60": 49.6071603849787, "pb50": 0.39692233991922576, "ben50": 22.45645219697194, "extra_births_2031_40": 0.0}, "trend": {"pop70": 85.66108119799999, "dep70": 96.68068709035109, "real70": 96.78756066692071, "debt70": 309.9289189241382, "it50": 37.794754327164796, "repl60": 49.73536698046334, "pb50": -0.8814059753436588, "ben50": 25.297834488220314, "extra_births_2031_40": -64845.35129999996}, "demo3": {"pop70": 98.07126160499999, "dep70": 89.0760977553609, "real70": 123.79236136706382, "debt70": 174.86448966872837, "it50": 29.03361949461031, "repl60": 49.64079295328641, "pb50": 0.7952753878382948, "ben50": 21.928467542972907, "extra_births_2031_40": 106599.67729999998}, "tax15": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 100.18014317821736, "debt70": 212.64310760393064, "it50": 26.753211512271093, "repl60": 49.660307189348075, "pb50": 1.0638868345085497, "ben50": 25.382973192950057, "extra_births_2031_40": 0.0}, "prem1": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 100.18014317821736, "debt70": 253.36823656525468, "it50": 34.226795829613835, "repl60": 49.660307189348075, "pb50": 0.1180586900502679, "ben50": 25.382973192950057, "extra_births_2031_40": 0.0}, "yld4": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 100.18014317821736, "debt70": 437.1183767203958, "it50": 72.63875391269687, "repl60": 49.660307189348075, "pb50": -0.8819413099497322, "ben50": 25.382973192950057, "extra_births_2031_40": 0.0}, "infl3": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 100.18014317821736, "debt70": 218.19481493088279, "it50": 31.53098675207378, "repl60": 49.55219441548923, "pb50": -0.8761628301775681, "ben50": 25.361050894781524, "extra_births_2031_40": 0.0}, "infl3y35": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 100.18014317821736, "debt70": 278.63230699497814, "it50": 49.800624811065255, "repl60": 49.55219441548923, "pb50": -0.8761628301775681, "ben50": 25.361050894781524, "extra_births_2031_40": 0.0}, "prod15": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 128.13022745288373, "debt70": 203.91739116967602, "it50": 31.869972139179833, "repl60": 49.55935939634853, "pb50": -0.04851461348821307, "ben50": 25.36256817488755, "extra_births_2031_40": 0.0}, "prod0": {"pop70": 88.542003546, "dep70": 95.51573298965553, "real70": 69.07597312267919, "debt70": 493.39978672591485, "it50": 48.36652042818636, "repl60": 49.73333834650087, "pb50": -2.3515717561346814, "ben50": 25.397604847691632, "extra_births_2031_40": 0.0}};
-  var CMP_ROWS = [
-    ['base', '基準', 'Baseline', '—', '—'],
-    ['imm10', '移民 +10万人/年', 'Immigration +100k a year', '移民 +9.2万人/年', 'Migrants +92k a year'],
-    ['births10', '出生 +10万人/年（出生率+0.18）', 'Births +100k a year (fertility +0.18)', '出生 +9.2万人/年', 'Births +92k a year'],
-    ['marr10', '結婚する人 +10%', 'Share who marry +10%', '出生 +4.2万人/年', 'Births +42k a year'],
-    ['ret68', '年金は68歳から', 'Pensions from 68', '—', '—'],
-    ['trend', '出生率が最近の水準のまま', 'Fertility stays at recent level', '出生 −6.6万人/年', 'Births −66k a year'],
-    ['demo3', '移民+10万人・出生+10万人・68歳', 'Immigration + births + age 68', '出生 +10.7万人、移民 +9.3万人', 'Births +107k, migrants +93k'],
-    ['tax15', '消費税 10%→15%', 'Consumption tax 10% to 15%', '税収 約+12.5兆円（2024年度換算）', 'Revenue about +¥12.5 trillion (FY2024 terms)'],
-    ['prem1', '保険料収入 +GDPの1%', 'Contribution revenue +1% of GDP', '約+7兆円', 'About +¥7 trillion'],
-    ['yld4', '長期金利 4%', 'Long-term yield 4%', '+1.5ポイント', '+1.5 points'],
-    ['infl3', '物価 3%（金利は2.5%のまま）', 'Inflation 3% (yield stays 2.5%)', '+1ポイント', '+1 point'],
-    ['infl3y35', '物価 3%・長期金利 3.5%', 'Inflation 3%, yield 3.5%', '+1ポイント、+1ポイント', '+1 point, +1 point'],
-    ['prod15', '生産性 年1.5%', 'Productivity 1.5% a year', '+0.6ポイント', '+0.6 points'],
-    ['prod0', '生産性 年0%', 'Productivity 0% a year', '−0.9ポイント', '−0.9 points']
-  ];
 
   var lang = 'ja';
   try { var saved = localStorage.getItem('minijapan-lang'); if (saved === 'ja' || saved === 'en') lang = saved; else if (!/^ja/i.test(navigator.language || 'ja')) lang = 'en'; } catch (e) { if (!/^ja/i.test(navigator.language || 'ja')) lang = 'en'; }
@@ -678,10 +648,10 @@ if (typeof module !== 'undefined') module.exports = JPABM;
     base: P({}), trend: P({ tfr: -0.13 }), imm10: P({ imm: 26.4 }), births10: P({ tfr: 0.18 }), ret68: P({ ret: 68 }),
     tax15: P({ taxC: 15 }), infl3: P({ infl: 3, yld: 3.5 }), yld4: P({ yld: 4 }), prod15: P({ prod: 1.5 })
   };
+  var HH = { family: { inc: 800, con: 480, loan: 3000, sav: 500, ret: false }, single: { inc: 350, con: 210, loan: 0, sav: 150, ret: false }, pension: { inc: 270, con: 280, loan: 0, sav: 1000, ret: true } };
   var CTL = Object.keys(DEF);
-  var baseline = null, scenario = null, timer = null, baseTok = { v: 0 }, scnTok = { v: 0 }, selYear = 2070, playTimer = null;
+  var baseline = null, scenario = null, timer = null, baseTok = { v: 0 }, scnTok = { v: 0 }, selYear = 2040, playTimer = null, tab = 'hh';
 
-  /* ------------------------------------------------------------------ number formats */
   var comma = function (v) { return Math.round(v).toLocaleString(lang === 'ja' ? 'ja-JP' : 'en-US'); };
   var f1 = function (v) { return v.toFixed(1); };
   var signed = function (d, dec) { var s = Math.abs(d).toFixed(dec); return (Math.abs(d) < Math.pow(10, -dec) / 2 ? '±' : (d >= 0 ? '+' : MINUS)) + s; };
@@ -689,6 +659,8 @@ if (typeof module !== 'undefined') module.exports = JPABM;
   var popDiff = function (d) { return lang === 'ja' ? (d >= 0 ? '+' : MINUS) + comma(Math.abs(d) / 1e4) + '万人' : signed(d / 1e6, 1) + ' million'; };
   var ptUnit = function () { return lang === 'ja' ? 'ポイント' : ' pts'; };
   var pct = function (v) { return (v < 0 ? MINUS : '') + Math.abs(v).toFixed(1) + '%'; };
+  var yen = function (v) { return lang === 'ja' ? (v < 0 ? MINUS : '') + Math.abs(v).toFixed(1) + '万円' : (v < 0 ? MINUS : '') + '¥' + comma(Math.abs(v) * 10000); };
+  var yenD = function (v) { return Math.abs(v) < 0.05 ? '±0' : (v > 0 ? '+' : MINUS) + (lang === 'ja' ? Math.abs(v).toFixed(1) + '万円' : '¥' + comma(Math.abs(v) * 10000)); };
 
   /* ------------------------------------------------------------------ controls */
   function readControls() { var c = {}; CTL.forEach(function (k) { c[k] = +$(k).value; }); return c; }
@@ -696,18 +668,21 @@ if (typeof module !== 'undefined') module.exports = JPABM;
   function labels() {
     var c = readControls(), b = JPABM.tfrPath(2035, 1.36), ja = lang === 'ja';
     $('o-tfr').textContent = (c.tfr >= 0 ? '+' : MINUS) + Math.abs(c.tfr).toFixed(2);
-    $('h-tfr').textContent = ja ? '2035年の出生率は ' + (b + c.tfr).toFixed(2) + '（社人研の中位は ' + b.toFixed(2) + '、2024年の実績は1.15）'
-      : 'Fertility in 2035: ' + (b + c.tfr).toFixed(2) + ' (IPSS medium ' + b.toFixed(2) + '; 2024 actual 1.15)';
+    $('h-tfr').textContent = ja ? '2035年の出生率は ' + (b + c.tfr).toFixed(2) + '（社人研の中位は ' + b.toFixed(2) + '、2024年の実績は1.15）。1人の女性が一生に産む子どもの数の平均です。'
+      : 'Fertility in 2035: ' + (b + c.tfr).toFixed(2) + ' (IPSS medium ' + b.toFixed(2) + '; 2024 actual 1.15). The average number of children a woman has in her lifetime.';
     $('o-imm').textContent = ja ? f1(c.imm) + '万人/年' : comma(c.imm * 10000) + ' a year';
     $('o-ret').textContent = ja ? c.ret + '歳' : String(c.ret);
     $('o-marr').textContent = '×' + c.marr.toFixed(2);
     var fr = Math.min(0.98, 0.835 * c.marr) * 100;
     $('h-marr').textContent = ja ? '女性の生涯既婚率 83.5% → ' + f1(fr) + '%（2020年の未婚率は16.5%）' : 'Women who ever marry: 83.5% → ' + f1(fr) + '% (16.5% never married in 2020)';
     $('o-prem').textContent = ja ? 'GDP比' + c.prem.toFixed(1) + '%' : c.prem.toFixed(1) + '% of GDP';
+    var pw = c.prem * 2.1;
+    $('h-prem').textContent = ja ? '保険料を上げるなどして増やす収入です。国の一般会計から社会保障に回す額が、その分減ります。1%は約6.7兆円で、保険料率にすると約' + pw.toFixed(1) + 'ポイント（会社と本人の合計）です。'
+      : 'Revenue raised by higher contributions. The transfer from the general account to social security falls by the same amount. 1% is about ¥6.7 trillion, or about ' + pw.toFixed(1) + ' points of contribution rate (employer and employee together).';
     $('o-taxC').textContent = c.taxC + '%';
     var dt = (c.taxC - 10) * 2.5;
-    $('h-taxC').textContent = ja ? '現在10%。1%あたりの税収は約2.5兆円（2024年度）。現在の設定での増減は ' + (dt >= 0 ? '+' : MINUS) + Math.abs(dt).toFixed(1) + '兆円。'
-      : 'Currently 10%. One point raises about ¥2.5 trillion (FY2024). Change at this setting: ' + (dt >= 0 ? '+' : MINUS) + '¥' + Math.abs(dt).toFixed(1) + ' trillion.';
+    $('h-taxC').textContent = ja ? '今は10%です。1%あたりの税収は約2.5兆円（2024年度）で、この設定では ' + (dt >= 0 ? '+' : MINUS) + Math.abs(dt).toFixed(1) + '兆円の増減になります。'
+      : 'Currently 10%. One point raises about ¥2.5 trillion (FY2024); at this setting that is ' + (dt >= 0 ? '+' : MINUS) + '¥' + Math.abs(dt).toFixed(1) + ' trillion.';
     $('o-taxOth').textContent = (c.taxOth >= 0 ? '+' : MINUS) + Math.abs(c.taxOth) + '%';
     $('o-yld').textContent = c.yld.toFixed(1) + '%';
     $('o-infl').textContent = c.infl.toFixed(1) + '%';
@@ -717,7 +692,7 @@ if (typeof module !== 'undefined') module.exports = JPABM;
   }
   function toParams(c) { return { n: N, tfrDelta: c.tfr, netImm: Math.abs(c.imm - 16.4) < 0.05 ? JPABM.FOREIGN_2040 : c.imm * 10000, retAge: c.ret, marriageMult: c.marr, migMult: c.mig, policyRamp: c.ramp, prem: c.prem, taxC: c.taxC, taxOth: c.taxOth, yld: c.yld, infl: c.infl, prod: c.prod }; }
   function status(s) { $('status').textContent = s; }
-  function doneText() { return lang === 'ja' ? RUNS + '回の平均（1回あたり' + N.toLocaleString('ja-JP') + '人）。' : 'Average of ' + RUNS + ' runs, ' + N.toLocaleString('en-US') + ' people each.'; }
+  function doneText() { return lang === 'ja' ? RUNS + '回の平均です（1回あたり' + N.toLocaleString('ja-JP') + '人）。' : 'Average of ' + RUNS + ' runs, ' + N.toLocaleString('en-US') + ' people each.'; }
   function calcText(i) { return (lang === 'ja' ? '計算中 ' : 'Calculating ') + i + '/' + RUNS; }
 
   function compute(params, seedBase, done, tok) {
@@ -731,7 +706,71 @@ if (typeof module !== 'undefined') module.exports = JPABM;
   }
   function schedule() {
     clearTimeout(timer);
-    timer = setTimeout(function () { compute(toParams(readControls()), 5000, function (s) { scenario = s; renderAll(); status(doneText()); }, scnTok); }, 220);
+    timer = setTimeout(function () { compute(toParams(readControls()), 5000, function (s) { scenario = s; renderActive(); status(doneText()); }, scnTok); }, 220);
+  }
+
+  /* ------------------------------------------------------------------ household */
+  function hhIn() { return { inc: +$('h-inc').value || 0, con: +$('h-con').value || 0, loan: +$('h-loan').value || 0, sav: +$('h-sav').value || 0, ret: $('h-ret').checked }; }
+  function rampAt(y, c) { return y < 2025 ? 0 : Math.min(1, Math.max(0, (y - 2025 + 1) / Math.max(1, c.ramp))); }
+  function hhYear(h, c, st, y) {
+    var i = y - 2020, r = rampAt(y, c), tau = 10 + r * (c.taxC - 10);
+    var tax = 0.8 * h.con / 1.10 * tau / 100, prem = h.ret ? 0 : h.inc * (c.prem * r * 2.1 / 2) / 100;
+    var wage = st.f_wage.mean[i] / 100, repl = st.repl.mean[i] / 61.2;
+    var income = h.ret ? h.inc * repl * wage : h.inc * wage;
+    var interest = h.loan * st.f_yld.mean[i] / 100, price = st.f_price.mean[i] / 100;
+    return { tax: tax, prem: prem, income: income, interest: interest, sav: h.sav / price, liv: h.con * price, net: income - tax - prem - interest };
+  }
+  function setHH(k) {
+    var h = HH[k]; $('h-inc').value = h.inc; $('h-con').value = h.con; $('h-loan').value = h.loan; $('h-sav').value = h.sav; $('h-ret').checked = h.ret;
+    document.querySelectorAll('#cmpmet .pick').forEach(function (b) { b.addEventListener('click', function () { cmpMetric = b.getAttribute('data-m'); renderCmp(); }); });
+  document.querySelectorAll('#hhsel .pick').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-h') === k ? 'true' : 'false'); });
+    hhLabel(); renderActive();
+  }
+  function hhLabel() { $('i-inc-l').textContent = $('h-ret').checked ? t('i_inc_pen') : t('i_inc'); }
+  function renderHH() {
+    if (!baseline) return;
+    var S = scenario || baseline, c = readControls(), h = hhIn(), y = selYear;
+    var a = hhYear(h, c, S, y), b = hhYear(h, DEF, baseline, y);
+    var row = function (k, g, v, d, cls) { return '<div class="r ' + (cls || '') + '"><dt>' + t(k) + '<small>' + t(g) + '</small></dt><dd>' + v + '</dd><dd class="d">' + d + '</dd></div>'; };
+    var out = '<div class="r rh"><span></span><span>' + t('colNow') + '</span><span>' + t('vs') + '</span></div>';
+    out += row('r_tax', 'g_taxr', yen(a.tax), yenD(a.tax - b.tax));
+    if (!h.ret) out += row('r_prem', 'g_premr', yen(a.prem), yenD(a.prem - b.prem));
+    out += row('r_inc', 'g_incr', yen(a.income), yenD(a.income - b.income));
+    if (h.loan > 0) out += row('r_loan', 'g_loanr', yen(a.interest), yenD(a.interest - b.interest));
+    out += row('r_net', 'g_netr', '', yenD(a.net - b.net), 'tot');
+    out += row('r_sav', 'g_savr', yen(a.sav), yenD(a.sav - b.sav));
+    out += row('r_liv', 'g_livr', yen(a.liv), yenD(a.liv - b.liv));
+    $('hhrows').innerHTML = out;
+    var net = new Float64Array(51), zero = new Float64Array(51);
+    for (var yy = 2020; yy <= 2070; yy++) { var q = hhYear(h, c, S, yy), w = hhYear(h, DEF, baseline, yy); net[yy - 2020] = q.net - w.net; }
+    drawChart({ id: 'c-hh', ro: 'ro-hh', title: 't_hh', x0: 2024, dec: 1, L: 46, series: [{ label: t('s_base'), lab: 'lab-base', cls: 'ln-base', mean: zero }, { label: t('s_you'), lab: 'lab-you', cls: 'ln-you', mean: net }], valFmt: function (v) { return yenD(v); }, tickFmt: function (v) { return v.toFixed(0); } });
+  }
+
+  /* ------------------------------------------------------------------ summary rows */
+  function renderRows(id, defs) {
+    var S = scenario || baseline, yi = selYear - 2020, ec = yi >= I0, pt = ptUnit();
+    var m = function (st, k) { return st[k].mean[yi]; };
+    var out = '<div class="r rh"><span></span><span>' + t('colNow') + '</span><span>' + t('vs') + '</span></div>';
+    defs.forEach(function (d) {
+      var needs = d.econ && !ec, v = needs ? t('na') : d.fmt(m(S, d.key)), df = needs ? '' : d.diff(m(S, d.key) - m(baseline, d.key));
+      out += '<div class="r"><dt>' + t(d.n) + '<small>' + t(d.g) + '</small></dt><dd>' + v + '</dd><dd class="d">' + df + '</dd></div>';
+    });
+    $(id).innerHTML = out;
+  }
+  function renderSummaries() {
+    var pt = ptUnit();
+    renderRows('rows-fin', [
+      { n: 'r_pb', g: 'g_pb', key: 'f_pb', econ: 1, fmt: pct, diff: function (d) { return signed(d, 1) + pt; } },
+      { n: 'r_debt', g: 'g_debt', key: 'f_debtgdp', econ: 1, fmt: function (v) { return Math.round(v) + '%'; }, diff: function (d) { return signed(d, 0) + pt; } },
+      { n: 'r_int', g: 'g_int', key: 'f_inttax', econ: 1, fmt: function (v) { return f1(v) + '%'; }, diff: function (d) { return signed(d, 1) + pt; } }]);
+    renderRows('rows-eco', [
+      { n: 'r_real', g: 'g_real', key: 'f_real', econ: 1, fmt: f1, diff: function (d) { return signed(d, 1); } },
+      { n: 'r_ben', g: 'g_ben', key: 'f_benpct', econ: 1, fmt: function (v) { return f1(v) + '%'; }, diff: function (d) { return signed(d, 1) + pt; } },
+      { n: 'r_repl', g: 'g_repl', key: 'repl', econ: 1, fmt: function (v) { return f1(v) + '%'; }, diff: function (d) { return signed(d, 1) + pt; } }]);
+    renderRows('rows-pop', [
+      { n: 'r_pop', g: 'g_pop2', key: 'pop', fmt: popText, diff: popDiff },
+      { n: 'r_s65', g: 'g_s65', key: 's65', fmt: function (v) { return f1(v) + '%'; }, diff: function (d) { return signed(d, 1) + pt; } },
+      { n: 'r_dep', g: 'g_dep', key: 'dep', fmt: f1, diff: function (d) { return signed(d, 1); } }]);
   }
 
   /* ------------------------------------------------------------------ pyramid */
@@ -764,35 +803,6 @@ if (typeof module !== 'undefined') module.exports = JPABM;
     svg.innerHTML = o + bars + outl;
     svg.setAttribute('aria-label', (lang === 'ja' ? '人口ピラミッド ' + selYear + '年' : 'Population pyramid, ' + selYear));
   }
-  function renderYear() {
-    if (!baseline) return;
-    var S = scenario || baseline, yi = selYear - 2020, ec = yi >= I0, na = t('na');
-    $('bigyear').textContent = selYear;
-    $('ysub').textContent = popText(S.pop.mean[yi]) + (lang === 'ja' ? '、' : ', ') + t('over65') + ' ' + f1(S.s65.mean[yi]) + '%';
-    var pt = ptUnit(), m = function (st, k) { return st[k].mean[yi]; };
-    var rows = [
-      [t('d_pop'), popText(m(S, 'pop')), popDiff(m(S, 'pop') - m(baseline, 'pop'))],
-      [t('d_s65'), f1(m(S, 's65')) + '%', signed(m(S, 's65') - m(baseline, 's65'), 1) + pt],
-      [t('d_dep'), f1(m(S, 'dep')), signed(m(S, 'dep') - m(baseline, 'dep'), 1)],
-      null,
-      [t('d_real'), ec ? f1(m(S, 'f_real')) : na, ec ? signed(m(S, 'f_real') - m(baseline, 'f_real'), 1) : ''],
-      [t('d_ben'), ec ? f1(m(S, 'f_benpct')) + '%' : na, ec ? signed(m(S, 'f_benpct') - m(baseline, 'f_benpct'), 1) + pt : ''],
-      [t('d_repl'), ec ? f1(m(S, 'repl')) + '%' : na, ec ? signed(m(S, 'repl') - m(baseline, 'repl'), 1) + pt : ''],
-      null,
-      [t('d_pb'), ec ? pct(m(S, 'f_pb')) : na, ec ? signed(m(S, 'f_pb') - m(baseline, 'f_pb'), 1) + pt : ''],
-      [t('d_debt'), ec ? Math.round(m(S, 'f_debtgdp')) + '%' : na, ec ? signed(m(S, 'f_debtgdp') - m(baseline, 'f_debtgdp'), 0) + pt : ''],
-      [t('d_int'), ec ? f1(m(S, 'f_inttax')) + '%' : na, ec ? signed(m(S, 'f_inttax') - m(baseline, 'f_inttax'), 1) + pt : '']];
-    $('diff').innerHTML = '<div class="dh"><span></span><span>' + t('colNow') + '</span><span>' + t('vs') + '</span></div>' +
-      rows.map(function (r) { return r ? '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd><dd class="d">' + r[2] + '</dd></div>' : '<span class="gap"></span>'; }).join('');
-    drawPyramid();
-  }
-  function setYear(y) { selYear = Math.max(2020, Math.min(2070, y)); $('year').value = selYear; renderYear(); renderCharts(); }
-  function togglePlay() {
-    if (playTimer) { clearInterval(playTimer); playTimer = null; $('play').textContent = t('play'); return; }
-    if (selYear >= 2070) setYear(2020);
-    $('play').textContent = t('pause');
-    playTimer = setInterval(function () { if (selYear >= 2070) { clearInterval(playTimer); playTimer = null; $('play').textContent = t('play'); return; } setYear(selYear + 1); }, 130);
-  }
 
   /* ------------------------------------------------------------------ line charts */
   function niceTicks(min, max) {
@@ -813,7 +823,7 @@ if (typeof module !== 'undefined') module.exports = JPABM;
     var o = '';
     nt.ticks.forEach(function (tk) {
       o += '<line class="' + (Math.abs(tk) < 1e-9 && yl < 0 ? 'zero' : 'gridline') + '" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(tk) + '" y2="' + Y(tk) + '"/><text class="tick" x="' + (L - 6) + '" y="' + (Y(tk) + 4) + '" text-anchor="end">' + (cfg.tickFmt ? cfg.tickFmt(tk) : tk) + '</text>'; });
-    var ty = []; for (var y = Math.ceil((x0 + 1) / 10) * 10; y <= 2070; y += 10) ty.push(y);
+    var ty = []; for (var y = Math.ceil((x0 + 1) / 10) * 10; y <= 2070; y += 10) if (y - x0 > 8) ty.push(y);
     if (x0 !== 2020) ty.unshift(x0);
     ty.forEach(function (yy) { o += '<text class="tick" x="' + X(yy) + '" y="' + (H - 7) + '" text-anchor="' + (yy === x0 && x0 !== 2020 ? 'start' : 'middle') + '">' + yy + '</text>'; });
     if (selYear >= x0) o += '<line class="sel" x1="' + X(selYear) + '" x2="' + X(selYear) + '" y1="' + T0 + '" y2="' + (H - B) + '"/>';
@@ -853,7 +863,6 @@ if (typeof module !== 'undefined') module.exports = JPABM;
     svg.setAttribute('aria-label', t(cfg.title));
   }
   function renderCharts() {
-    if (!baseline) return;
     var S = scenario || baseline, IP = JPABM.IPSS, ja = lang === 'ja', cv = ja ? 1e-4 : 1e-6, ipv = ja ? 100 : 1;
     var cvt = function (a) { return Array.prototype.map.call(a, function (v) { return v * cv; }); };
     var ser = function (st, key, conv) { return { mean: conv ? cvt(st[key].mean) : st[key].mean, lo: conv ? cvt(st[key].lo) : st[key].lo, hi: conv ? cvt(st[key].hi) : st[key].hi }; };
@@ -861,52 +870,86 @@ if (typeof module !== 'undefined') module.exports = JPABM;
       { label: t('s_you'), lab: 'lab-you', cls: 'ln-you', mean: s.mean, lo: s.lo, hi: s.hi }]; };
     var ipss = function (arr, mult) { return { x: IP.years, y: arr.map(function (v) { return v * mult; }), label: t('s_ipss') }; };
     var p1 = function (v) { return v.toFixed(1) + '%'; }, p0 = function (v) { return Math.round(v) + '%'; };
-    drawChart({ id: 'c-pop', ro: 'ro-pop', title: 't_pop', dec: ja ? 0 : 1, L: ja ? 48 : 42, series: mk(S, 'pop', true), ipss: ipss(IP.pop, ipv), tickFmt: ja ? comma : null, valFmt: ja ? comma : f1 });
-    drawChart({ id: 'c-dep', ro: 'ro-dep', title: 't_dep', dec: 1, series: mk(S, 'dep'), ipss: ipss(IP.dep, 1) });
-    drawChart({ id: 'c-real', ro: 'ro-real', title: 't_real', x0: 2024, dec: 1, series: mk(S, 'f_real') });
-    drawChart({ id: 'c-ben', ro: 'ro-ben', title: 't_ben', x0: 2024, dec: 1, series: mk(S, 'f_benpct'), tickFmt: p0, valFmt: p1 });
-    drawChart({ id: 'c-repl', ro: 'ro-repl', title: 't_repl', x0: 2024, dec: 1, L: 46, series: mk(S, 'repl'), tickFmt: p0, valFmt: p1,
-      marks: [{ year: 2024, lo: 61.2, hi: 61.2, label: t('mk24'), anchor: 'start', dy: -12 }, { year: 2060, lo: 50.4, hi: 57.6, label: t('mk60'), anchor: 'end', dy: -10 }] });
-    drawChart({ id: 'c-pb', ro: 'ro-pb', title: 't_pb', x0: 2024, dec: 1, L: 46, series: mk(S, 'f_pb'), tickFmt: p1, valFmt: p1 });
-    drawChart({ id: 'c-debt', ro: 'ro-debt', title: 't_debt', x0: 2024, dec: 0, L: 50, series: mk(S, 'f_debtgdp'), tickFmt: p0, valFmt: p0 });
-    drawChart({ id: 'c-int', ro: 'ro-int', title: 't_int', x0: 2024, dec: 1, L: 46, series: mk(S, 'f_inttax'), tickFmt: p0, valFmt: p1 });
+    {
+      drawChart({ id: 'c-pop', ro: 'ro-pop', title: 't_pop', dec: ja ? 0 : 1, L: ja ? 48 : 42, series: mk(S, 'pop', true), ipss: ipss(IP.pop, ipv), tickFmt: ja ? comma : null, valFmt: ja ? comma : f1 });
+      drawChart({ id: 'c-dep', ro: 'ro-dep', title: 't_dep', dec: 1, series: mk(S, 'dep'), ipss: ipss(IP.dep, 1) });
+    }
+    {
+      drawChart({ id: 'c-real', ro: 'ro-real', title: 't_real', x0: 2024, dec: 1, series: mk(S, 'f_real') });
+      drawChart({ id: 'c-ben', ro: 'ro-ben', title: 't_ben', x0: 2024, dec: 1, series: mk(S, 'f_benpct'), tickFmt: p0, valFmt: p1 });
+      drawChart({ id: 'c-repl', ro: 'ro-repl', title: 't_repl', x0: 2024, dec: 1, L: 46, series: mk(S, 'repl'), tickFmt: p0, valFmt: p1,
+        marks: [{ year: 2024, lo: 61.2, hi: 61.2, label: t('mk24'), anchor: 'start', dy: -12 }, { year: 2060, lo: 50.4, hi: 57.6, label: t('mk60'), anchor: 'end', dy: -10 }] });
+    }
+    {
+      drawChart({ id: 'c-pb', ro: 'ro-pb', title: 't_pb', x0: 2024, dec: 1, L: 46, series: mk(S, 'f_pb'), tickFmt: p1, valFmt: p1 });
+      drawChart({ id: 'c-debt', ro: 'ro-debt', title: 't_debt', x0: 2024, dec: 0, L: 50, series: mk(S, 'f_debtgdp'), tickFmt: p0, valFmt: p0 });
+      drawChart({ id: 'c-int', ro: 'ro-int', title: 't_int', x0: 2024, dec: 1, L: 46, series: mk(S, 'f_inttax'), tickFmt: p0, valFmt: p1 });
+    }
   }
 
-  /* ------------------------------------------------------------------ tables and static text */
-  function renderTables() {
-    var ja = lang === 'ja', cols = t('cmpCols'), at = function (r, k, y) { return CMP[r][k]; };
-    var keys = CMP_ROWS.map(function (r) { return r[0]; }), col = function (k) { return keys.map(function (r) { return CMP[r][k]; }); };
-    var best = { pop70: Math.max.apply(null, col('pop70')), dep70: Math.min.apply(null, col('dep70')), real70: Math.max.apply(null, col('real70')), debt70: Math.min.apply(null, col('debt70')), it50: Math.min.apply(null, col('it50')) };
-    var h = '<thead><tr>' + cols.map(function (c) { return '<th scope="col">' + c + '</th>'; }).join('') + '</tr></thead><tbody>';
-    CMP_ROWS.forEach(function (r, i) {
-      var d = CMP[r[0]], cl = function (k) { return d[k] === best[k] ? ' class="best"' : ''; };
-      h += '<tr' + (i === 7 ? ' class="sep"' : '') + '><td>' + (ja ? r[1] : r[2]) + '</td><td>' + (ja ? r[3] : r[4]) + '</td><td' + cl('pop70') + '>' + (ja ? comma(Math.round(d.pop70 * 10) * 10) + '万人' : d.pop70.toFixed(1) + ' million') + '</td><td' + cl('dep70') + '>' + f1(d.dep70) + '</td><td' + cl('real70') + '>' + f1(d.real70) + '</td><td' + cl('debt70') + '>' + Math.round(d.debt70) + '%</td><td' + cl('it50') + '>' + f1(d.it50) + '%</td></tr>';
+
+  /* ------------------------------------------------------------------ policy comparison */
+  var CMPK = ['trend', 'imm10', 'births10', 'ret68', 'tax15', 'infl3', 'yld4', 'prod15'], RUNS_CMP = 8, cmpRes = null, cmpMetric = 'f_debtgdp', cmpState = '';
+  function computeCmp() {
+    var keys = ['base'].concat(CMPK), res = {}, k = 0, r = 0, runs = [], total = keys.length * RUNS_CMP, done = 0;
+    cmpRes = null; cmpState = t('cmpBusy') + '0%'; renderCmp();
+    (function next() {
+      var key = keys[k];
+      if (!key) { cmpRes = res; cmpState = ''; renderCmp(); return; }
+      if (r === 0) runs = [];
+      runs.push(JPABM.run(toParams(PRESETS[key]), 5000 + r)); r++; done++;
+      if (r >= RUNS_CMP) { res[key] = JPABM.stats(runs); r = 0; k++; }
+      cmpState = t('cmpBusy') + Math.round(100 * done / total) + '%'; $('cmpst').textContent = cmpState;
+      setTimeout(next, 0);
+    })();
+  }
+  function renderCmp() {
+    var met = { f_debtgdp: ['g_debt', 1, 'pt0'], f_inttax: ['g_int', 1, 'pt'], f_real: ['g_real', 1, 'ix'], repl: ['g_repl', 1, 'pt'], pop: ['g_pop2', 0, 'pop'], dep: ['g_dep', 1, 'ix'] }[cmpMetric];
+    $('cmpgloss').textContent = t(met[0]);
+    document.querySelectorAll('#cmpmet .pick').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-m') === cmpMetric ? 'true' : 'false'); });
+    if (!cmpRes) { $('cmprows').innerHTML = ''; $('cmpst').textContent = cmpState; return; }
+    var yi = selYear - 2020, pol = t('cmpPol'), econ = cmpMetric.indexOf('f_') === 0 || cmpMetric === 'repl';
+    if (econ && yi < I0) { $('cmprows').innerHTML = ''; $('cmpst').textContent = t('cmpNA'); return; }
+    var rows = CMPK.map(function (k) { return { k: k, d: cmpRes[k][cmpMetric].mean[yi] - cmpRes.base[cmpMetric].mean[yi] }; });
+    rows.sort(function (a, b) { return b.d - a.d; });
+    var mx = Math.max.apply(null, rows.map(function (r) { return Math.abs(r.d); })) || 1;
+    var fmt = function (d) {
+      if (met[2] === 'pop') return popDiff(d);
+      if (met[2] === 'ix') return signed(d, 1);
+      return signed(d, met[2] === 'pt0' ? 0 : 1) + ptUnit();
+    };
+    var out = '';
+    rows.forEach(function (r) {
+      var w = Math.abs(r.d) / mx * 100, side = r.d >= 0 ? 'left:0;' : 'right:0;';
+      out += '<div class="cmprow"><div class="nm">' + pol[r.k][0] + '<small>' + pol[r.k][1] + '</small></div><div class="tr" style="border-left:0;border-right:0"><span style="position:absolute;left:50%;top:0;bottom:0;border-left:1px solid var(--ink)"></span><i style="' + (r.d >= 0 ? 'left:50%;' : 'right:50%;') + 'width:' + (w / 2).toFixed(1) + '%"></i></div><div class="vl">' + fmt(r.d) + '</div></div>';
     });
-    $('cmp').innerHTML = h + '</tbody>';
-    $('limits').innerHTML = t('limits').map(function (s) { return '<li>' + s + '</li>'; }).join('');
-    $('gl').innerHTML = t('gl').map(function (g) { return '<div><dt>' + g[0] + '</dt><dd>' + g[1] + '</dd></div>'; }).join('');
-    var ac = t('ancCols');
-    $('anchors').innerHTML = '<thead><tr>' + ac.map(function (c) { return '<th scope="col">' + c + '</th>'; }).join('') + '</tr></thead><tbody>' + t('anc').map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>'; }).join('') + '</tbody>';
+    $('cmprows').innerHTML = out; $('cmpst').textContent = t('cmpDone') + ' (' + selYear + ')';
+  }
+
+  /* ------------------------------------------------------------------ rendering */
+  function renderActive() {
+    if (!baseline) return;
+    $('yv').textContent = selYear;
+    renderSummaries(); renderCharts(); drawPyramid(); renderHH(); renderCmp();
     $('src').innerHTML = SRC[lang];
-    if (baseline) {
-      var IP = JPABM.IPSS, cc = t('chkCols'), hh = '<thead><tr>' + cc.map(function (c) { return '<th scope="col">' + c + '</th>'; }).join('') + '</tr></thead><tbody>';
-      [2030, 2040, 2050, 2060, 2070].forEach(function (y) {
-        var i = y - 2020, k = IP.years.indexOf(y), pm = baseline.pop.mean[i] / 1e6;
-        hh += '<tr><td>' + y + '</td><td>' + (ja ? comma(pm * 100) + ' / ' + comma(IP.pop[k] * 100) : pm.toFixed(1) + ' / ' + IP.pop[k].toFixed(1)) + '</td><td>' + f1(baseline.dep.mean[i]) + ' / ' + f1(IP.dep[k]) + '</td><td>' + f1(baseline.s65.mean[i]) + ' / ' + f1(IP.old[k]) + '</td></tr>';
-      });
-      $('check').innerHTML = hh + '</tbody>';
-    }
+  }
+  function setYear(y) { selYear = Math.max(2020, Math.min(2070, y)); $('year').value = selYear; renderActive(); }
+  function togglePlay() {
+    if (playTimer) { clearInterval(playTimer); playTimer = null; $('play').textContent = t('play'); return; }
+    if (selYear >= 2070) setYear(2020);
+    $('play').textContent = t('pause');
+    playTimer = setInterval(function () { if (selYear >= 2070) { clearInterval(playTimer); playTimer = null; $('play').textContent = t('play'); return; } setYear(selYear + 1); }, 130);
   }
   function applyText() {
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.innerHTML = T[lang][el.getAttribute('data-i18n')]; });
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
     $('play').textContent = playTimer ? t('pause') : t('play');
-    $('year').setAttribute('aria-label', lang === 'ja' ? '年' : 'Year');
-    $('presets').setAttribute('aria-label', lang === 'ja' ? 'よく使う組み合わせ' : 'Quick picks');
-    labels(); renderTables();
+    $('year').setAttribute('aria-label', t('yearLab'));
+    $('presets').setAttribute('aria-label', t('try'));
+    $('about-list').innerHTML = t('about').map(function (s) { return '<li>' + s + '</li>'; }).join('');
+    hhLabel(); labels();
   }
-  function renderAll() { renderYear(); renderCharts(); renderTables(); }
 
   /* ------------------------------------------------------------------ wiring */
   CTL.forEach(function (id) {
@@ -918,20 +961,24 @@ if (typeof module !== 'undefined') module.exports = JPABM;
       setControls(PRESETS[b.getAttribute('data-p')]); schedule();
     });
   });
+  document.querySelectorAll('#hhsel .pick').forEach(function (b) { b.addEventListener('click', function () { setHH(b.getAttribute('data-h')); }); });
+  ['h-inc', 'h-con', 'h-loan', 'h-sav', 'h-ret'].forEach(function (id) {
+    $(id).addEventListener('input', function () { document.querySelectorAll('#hhsel .pick').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); }); hhLabel(); renderActive(); });
+  });
   document.querySelectorAll('[data-lang]').forEach(function (b) {
     b.addEventListener('click', function () {
       lang = b.getAttribute('data-lang'); try { localStorage.setItem('minijapan-lang', lang); } catch (e) {}
-      applyText(); if (baseline) renderAll(); if (scenario || !baseline) status(baseline ? doneText() : calcText(0));
+      applyText(); renderActive(); if (scenario || !baseline) status(baseline ? doneText() : calcText(0));
     });
   });
   $('year').addEventListener('input', function () { if (playTimer) togglePlay(); setYear(+$('year').value); });
   $('play').addEventListener('click', togglePlay);
-  window.addEventListener('resize', function () { clearTimeout(window.__rz); window.__rz = setTimeout(function () { if (baseline) { drawPyramid(); renderCharts(); } }, 150); });
+  window.addEventListener('resize', function () { clearTimeout(window.__rz); window.__rz = setTimeout(renderActive, 150); });
 
-  applyText(); setControls(PRESETS.imm10);
+  applyText(); setControls(PRESETS.tax15);
   compute(toParams(PRESETS.base), 5000, function (s) {
-    baseline = s; scenario = null; renderAll();
-    compute(toParams(readControls()), 5000, function (s2) { scenario = s2; renderAll(); status(doneText()); }, scnTok);
+    baseline = s; scenario = null; renderActive();
+    compute(toParams(readControls()), 5000, function (s2) { scenario = s2; renderActive(); status(doneText()); setTimeout(computeCmp, 300); }, scnTok);
   }, baseTok);
 })();
 </script>

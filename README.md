@@ -11,7 +11,7 @@ Social Security Research). It is meant for *comparing policy scenarios on equal 
 ## Install and run
 
 ```bash
-pip install git+https://github.com/YOUR_GITHUB_USER/jpabm.git      # numpy only
+pip install git+https://github.com/miraemog/jpabm.git      # numpy only
 # or, from a clone:
 pip install -e ".[dev]"
 python -m jpabm.validate    # prints the comparison table below

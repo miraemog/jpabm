@@ -9,7 +9,7 @@ description = "Agent-based model of Japan's demographics and pension pressure, c
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "YOUR NAME HERE" }]
+authors = [{ name = "Mirei.K" }]
 keywords = ["agent-based model", "demography", "Japan", "pension", "public finance"]
 dependencies = ["numpy>=1.23"]
 

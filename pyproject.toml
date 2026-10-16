@@ -21,5 +21,5 @@ dev = ["pytest"]
 packages = ["jpabm"]
 
 [project.urls]
-Homepage = "https://github.com/YOUR_GITHUB_USER/jpabm"
-Issues = "https://github.com/YOUR_GITHUB_USER/jpabm/issues"
+Homepage = "https://github.com/miraemog/jpabm"
+Issues = "https://github.com/miraemog/jpabm/issues"

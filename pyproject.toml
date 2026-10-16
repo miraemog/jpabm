@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jpabm"
+version = "0.2.0"
+description = "Agent-based model of Japan's demographics and pension pressure, calibrated to and validated against IPSS 2023 projections"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.23"]
+
+[project.optional-dependencies]
+plot = ["matplotlib", "pandas"]
+dev = ["pytest"]
+
+[tool.setuptools]
+packages = ["jpabm"]

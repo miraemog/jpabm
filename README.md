@@ -1,5 +1,5 @@
 # jpabm — an agent-based model of Japan's population, economy and public finances
-
+https://miraemog.github.io/jpabm/
 Each agent is one person (age, sex, region, marital status). The model runs 2020→2070 in annual steps and is
 **calibrated to, and checked against, the IPSS 2023 national projections** (National Institute of Population and
 Social Security Research). It is meant for *comparing policy scenarios on equal footing*, not for forecasting.
